@@ -10,6 +10,7 @@
   <ol>
     <li><a href="#Project-Overview">Project Overview</a>
     <li><a href="#Data-Engineering">Data Engineering</a>
+    <li><a href="#Outlier Analysis">Outlier Analysis</a>
     <li><a href="#Exploratory-Data-Analysis">Exploratory Data Analysis</a>
     <li><a href="#Machine-Learning-Prediction-Models">Machine Learning</a>
           <ul>
@@ -29,9 +30,7 @@
 <!-- Project Overview -->
 ## Project Overview
 
-The World Bank has a large database called the World Development Indicators (WDI). According to the World Bank, the WDI are a "compilation of cross-country, relevant, high-quality, and internationally comparable statistics about global development and the fight against poverty." This data is free and open to the public for use. The WDI database contains a vast array of socioeconomic indicators related to population, GDP, education, health, human rights, labor, trade, land use, and so on. The WDI is one of the most significant international databases and contains around 1300 indicators for almost every country in the world, with the earliest indicators starting in 1960 (Van Der Mensbrugghe, 2016). 
-
-The United Nations Development Programme (UNDP) collects and stores international data for monitoring and reporting on multiple human development indices, such as poverty, gender equality, sustainability, and so on. This project will focus on predicting the Human Development Index (HDI). According to the UNDP, "the HDI was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone."
+Project summary here
 
 The entire project is coded in R and consists of 4 key steps (each in separate R Markdown files):
 <ol>
@@ -47,7 +46,7 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 <!-- Data Engineering -->
 ## Data Engineering
 
-[View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step1_DE.Rmd)
+[View the Python Markdown file for this step](url)
 
 <details open="open">
   <summary><b><i>Using the WDI API to scrape indicator data</b></i></summary>
@@ -231,6 +230,11 @@ After a bit of clean up, joining the UNDP data to the WDI.key data frame, and va
 <img src="https://github.com/julieanneco/predictingHDI/blob/photos/key.ind.png?raw=true" alt="key.ind" width="650">
 
 
+<!-- Outlier Analysis -->
+## Outlier Analysis
+
+
+
 <!-- Exploratory Data Analysis -->
 ## Exploratory Data Analysis
 
@@ -393,60 +397,6 @@ This endeavor offered a basic look into engineering data for exploratory analysi
 <img src="https://github.com/julieanneco/predictingHDI/blob/photos/hdi.jpg?raw=true" alt="undp hdi">
 
 In my original model, I ultimately used the UNDP Education Index because education indicators in WDI were too sparse to justify use in this application. Using this index helped immensely in predicting accurately. This is what sparked my interest in seeing how the HDI is actually determined. This curiosity led me to want to re-try the model on the actual indicators used by the UNDP to determine HDI. The final section below will do just that.
-
-<br />
-
-<!-- Using Actual Indicators -->
-## Using Actual Indicators
-
-[View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Actual_Ind.Rmd)
-
-
-This final section takes the actual indicators used by the UNDP to predict HDI based on the aggregated datasets available.
-
-<b>The 4 indicators that make up the Human Development Index:</b>
-  <ol>
-	<li> <i>Life Expectancy at Birth</i>
-		<ul> This indicator was used in the original model. Life expectancy at birth comes from multiple sources and indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life. </ul>
-  	<li> <i>GNI per capita (constant 2010 US$)</i>
-		<ul> GDP per capita was originally used because it showed higher correlation than GNI. GNI per capita is gross national income divided by midyear population. It is the sum of value added by all resident producers plus any product taxes (less subsidies) not included in the valuation of output plus net receipts of primary income (compensation of employees and property income) from abroad. Data are in constant 2010 U.S. dollars.</ul>
-	<li> <i>Expected Years of Schooling</i>
-		<ul>Derived from the UNESCO Institute for Statistics. Number of years of schooling that a child of school entrance age can expect to receive if prevailing patterns of age-specific enrolment rates persist throughout the child’s life.</ul>
-	<li> <i>Mean Years of Schooling</i>
-		<ul> A UNESCO Institute for statistics calculation based on the average number of years of education received by people ages 25 and older in their lifetime based on education attainment levels of the population converted into years of schooling based on theoretical duration of each level of education attended.</ul>
-	</li>
-  </ol>
-
-<b>Create the Data Frame</b>
-
-After importing the indictors from .csv files and merging and cleaning the data, this is the first few rows of the final data frame for the new model:
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/actualdata.png?raw=true" alt="new data frame with actual indicators">
-
-<b>Build the Model</b>
-
-Fit the new data to the same model.  
-
-```{r}
-# Split data into 90% for training and 10% for testing
-set.seed(123)
-hdi.samples <- predict.hdi$hdi %>%
-  createDataPartition(p = 0.9, list = FALSE)
-train.hdi  <- predict.hdi[hdi.samples, ]
-test.hdi <- predict.hdi[-hdi.samples, ]
-# Reset row index on test data (row.names)
-row.names(test.hdi) <- NULL
-# random forest for regression with 500 trees and mtry of 3
-hdi.rf <- randomForest(hdi ~ ., data = train.hdi, ntree=500, mtry = 3, 
-importance = TRUE, na.action = na.omit) 
-print(hdi.rf) 
-# Plot the error vs the number of trees graph 
-plot(hdi.rf) 
-```
-
-<b>Results</b>
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/actualresults.png?raw=true" alt="results with actual indicators">
 
 <br />
 
