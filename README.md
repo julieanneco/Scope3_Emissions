@@ -3,7 +3,7 @@
 
 <br />
 
-<img align="right" src="https://github.com/julieanneco/predictingHDI/blob/photos/world.png?raw=true" alt="world map" width="500">
+<img align="right" src="[https://github.com/julieanneco/GHG_Emissions/blob/Photos/project_image.png" alt="world map" width="500">
 
 <!-- Table of Contents -->
 <b>Table of Contents</b>
