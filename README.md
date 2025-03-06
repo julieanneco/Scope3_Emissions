@@ -1,5 +1,4 @@
-# GHG_Emissions
-### <i>Preliminary research into Scope 3 Emissions Data and Predicting Rates in Global Business.</i>
+# Predicting Scope 3 Greenhouse Gas Emissions in Global Business
 
 <br />
 
@@ -9,16 +8,16 @@
 <b>Table of Contents</b>
   <ol>
     <li><a href="#Project-Overview">Project Overview</a>
-    <li><a href="#Data-Engineering">Data Engineering</a>
-    <li><a href="#Outlier Analysis">Outlier Analysis</a>
-    <li><a href="#Exploratory-Data-Analysis">Exploratory Data Analysis</a>
-    <li><a href="#Machine-Learning-Prediction-Models">Machine Learning</a>
+    <li><a href="#EDA-Tableau">EDA in Tableau</a>
+    <li><a href="#Data-Engineering">Data Engineering: Merging World Bank Data</a>
+    <li><a href="#Outlier-Analysis">Outlier Analysis and Removal</a>
+    <li><a href="#Skew-Transformation">Skew Transformation</a>
+    <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
-          <li><a href="#random-forest-regression">Random Forest Regression</a>
-          <li><a href="#random-forest-classification">Random Forest Classification</a>
+          <li><a href="#xgboost">XGBoost</a>
+          <li><a href="#random-forest">Random Forest</a>
           </ul>
-    <li><a href="#discussion">Discussion</a>
-    <li><a href="#Using-Actual-Indicators">Using Actual Indicators</a>
+    <li><a href="#Analysis-Tableau">Interactive Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
     <li><a href="#acknowledgements">Acknowledgements</a>
   </ol>
@@ -43,8 +42,24 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 
 <br />
 
+<!-- EDA-Tableau -->
+## EDA in Tableau
+
+Project summary here
+
+The entire project is coded in R and consists of 4 key steps (each in separate R Markdown files):
+<ol>
+  <li><b>Data Engineering:</b> Scraping, merging, cleaning, and transforming data. </li>
+  <li><b>Exploratory Data Analysis:</b> Analyzing variables for correlation and regression to build final data frame(s). </li>
+  <li><b>Prediction with Machine Learning:</b> Using the final variables to build 2 random forest models (regression and classification).</li>
+  <li><b><i>Bonus:</b> Using true indicators to predict HDI.</i></li>
+	
+</ol>
+
+<br />
+
 <!-- Data Engineering -->
-## Data Engineering
+## Data Engineering: Merging World Bank Data
 
 [View the Python Markdown file for this step](url)
 
@@ -230,13 +245,13 @@ After a bit of clean up, joining the UNDP data to the WDI.key data frame, and va
 <img src="https://github.com/julieanneco/predictingHDI/blob/photos/key.ind.png?raw=true" alt="key.ind" width="650">
 
 
-<!-- Outlier Analysis -->
-## Outlier Analysis
+<!-- Outlier-Analysis -->
+## Outlier Analysis and Removal
 
 
 
-<!-- Exploratory Data Analysis -->
-## Exploratory Data Analysis
+<!-- Skew-Transformation -->
+## Skew Transformation
 
 [View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step2_EDA.Rmd)
 
@@ -326,13 +341,13 @@ F-statistic: 2.279e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
 <br />
 <br />
 
-<!-- Machine Learning Prediction Models -->
-# Machine Learning Prediction Models
+<!-- Machine-Learning -->
+# Machine Learning Models
 
 [View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step3_ML.Rmd)
 
-<!-- Random Forest Regression -->
-## Random Forest Regression
+<!-- xgboost -->
+## XGBoost
 
 The <b>predict.hdi</b> data frame has been cleaned and validated for regression. Using this final data frame that resulted from steps 1 and 2, I decided to test a random forest prediction model. To begin, I split the data into 2 partitions using the caret package. I chose to partition 90% for training and 10% for testing because I wanted to have as much data to train as possible, though standard partitioning is often around 80/20.
 ```{r}
@@ -361,8 +376,8 @@ The mean distance of the prediction to the actual HDI is -.0051, which is very i
 
 ![alt text](https://github.com/julieanneco/predictingHDI/blob/photos/RF-R-Results.jpg?raw=true)
 
-<!-- Random Forest Classification -->
-## Random Forest Classification
+<!-- Analysis-Tablea -->
+## Interactive Analysis in Tableau
 
 The random forest regression had surprisingly strong results, but I decided to also test classification since this is another common use for random forest prediction. To begin, I created 3 categories for HDI (Low, Med, High) and converted this column to a factor with 3 levels and then created an 80/20 partition using caTools, which is another package for creating partitions. I then fit the model with 500 trees and mtry of 2.
 
@@ -388,17 +403,6 @@ ntree = 500, random_state = 0)
 The model returned an <b>OOB error rate estimate of 1.84%</b>. Looking at a confusion matrix reveals just how well the classification prediction model performed on the test data with an error rate of 1.497.
 
 <img src="https://github.com/julieanneco/predictingHDI/blob/photos/confusion.png?raw=true" alt="confusion matrix" width="280">
-
-<!-- Results -->
-## Discussion
-
-This endeavor offered a basic look into engineering data for exploratory analysis and predicting variables with random forest. Both models predicted with high accuracy despite some of the limitations and challenges inherit to the available data. Interestingly, after achieving these results, I was able to find the actual metrics used by the UNDP to determine HDI. My initial exploration of the data started out vast and was narrowed down after hours and hours of painstaking analysis and testing. While this process was not included in the final snapshot, the first 2 steps are the result of deciding on the direction of the project based on this initial exploration (to predict HDI with highly correlated variables). Working backwards, my final model included many of the actual (or similar) indicators used by the UNDP to determine HDI metric.
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/hdi.jpg?raw=true" alt="undp hdi">
-
-In my original model, I ultimately used the UNDP Education Index because education indicators in WDI were too sparse to justify use in this application. Using this index helped immensely in predicting accurately. This is what sparked my interest in seeing how the HDI is actually determined. This curiosity led me to want to re-try the model on the actual indicators used by the UNDP to determine HDI. The final section below will do just that.
-
-<br />
 
 <!-- Conclusion -->
 ## Conclusion
