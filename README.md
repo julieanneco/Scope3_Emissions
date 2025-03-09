@@ -12,13 +12,23 @@
     <li><a href="#Project-Overview">Project Overview</a>
     <li><a href="#Data-Engineering">Data Engineering: Merging World Bank Data</a>
     <li><a href="#Outlier-Analysis">Outlier Analysis and Removal</a>
+          <ul>
+          <li><a href="#variation">Extreme Variation Anlaysis (Company Level)</a>
+          <li><a href="#zscore">Z-score Analysis at a (Primary Activity Level)</a>
+          <li><a href="#iqr">Custom IQR Binning to Reduce Percentile Distribtion/Volume</a>
+          <li><a href="#validation">Validating Changes in Standard Deviation, Skew, and Kurtosis</a>
+	  </ul>
     <li><a href="#Skew-Transformation">Skew Transformation</a>
+          <li><a href="#boxcox">Box Cox Transformation</a>
+          <li><a href="#quantile">Quantile Transformation</a>
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
+          <li><a href="#corelation">Correlation Analysis</a>
           <li><a href="#random-forest">Random Forest</a>
           <li><a href="#xgboost">XGBoost</a>
+          <li><a href="#xgboost">Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)</a>
           </ul>
-    <li><a href="#Analysis-Tableau">Interactive Analysis in Tableau</a>
+    <li><a href="#Analysis-Tableau">Interactive Reseach Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
     <li><a href="#acknowledgements">Acknowledgements</a>
   </ol>
@@ -368,11 +378,11 @@ While all features should be transformed within the Machine Learning pipeline, t
 
 **Distributions Before and After Skew Transformation**
 
-Box Cox
+*Box Cox*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/boxcox.png" alt="BoxCox.key" width="820">
 
-Quantile
+*Quantile*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
 
@@ -382,7 +392,12 @@ Quantile
 <!-- Machine-Learning -->
 # 4. Machine Learning Models
 
-[View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step3_ML.Rmd)
+[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/4%20-%20Machine%20Learning.ipynb)
+
+
+<!-- correlation -->
+## Correlation Analysis
+
 
 <!-- xgboost -->
 ## XGBoost
@@ -414,45 +429,43 @@ The mean distance of the prediction to the actual HDI is -.0051, which is very i
 
 ![alt text](https://github.com/julieanneco/predictingHDI/blob/photos/RF-R-Results.jpg?raw=true)
 
-<!-- Analysis-Tablea -->
-## Interactive Analysis in Tableau
 
-<div class='tableauPlaceholder' id='viz1741234238142' style='position: relative'><noscript><a href='#'><img alt='Story 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EmissionsinBusiness&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741234238142');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='2000px';vizElement.style.height='5027px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+<!-- Analysis-Tableau -->
+## Interactive Research Analysis in Tableau
 
+<div class='tableauPlaceholder' id='viz1741234238142' style='position: relative'><noscript><a href='#'><img alt='Story 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EmissionsinBusiness&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
 
-The random forest regression had surprisingly strong results, but I decided to also test classification since this is another common use for random forest prediction. To begin, I created 3 categories for HDI (Low, Med, High) and converted this column to a factor with 3 levels and then created an 80/20 partition using caTools, which is another package for creating partitions. I then fit the model with 500 trees and mtry of 2.
-
-```{r}
-predict.hdi.2$hdi.cat[predict.hdi.2$hdi < .650 ] = "Low"
-predict.hdi.2$hdi.cat[predict.hdi.2$hdi > .850 ] = "High"
-predict.hdi.2$hdi.cat[is.na(predict.hdi.2$hdi.cat)] <- "Mid"
-
-(predict.hdi.2$hdi.cat = factor(predict.hdi.2$hdi.cat, levels=c("Low", "Mid", "High")))
-
-set.seed(123)
-split = sample.split(predict.hdi.2$hdi.cat, SplitRatio = 0.80)
-hdi.training.set = subset(predict.hdi.2, split == TRUE)
-hdi.test.set = subset(predict.hdi.2, split == FALSE)
-
-hdi.rfc = randomForest(x = hdi.training.set[1:5],
-y = hdi.training.set$hdi.cat,
-ntree = 500, random_state = 0)
-```
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/rfc.png?raw=true" alt="predictions" width="650">
-
-The model returned an <b>OOB error rate estimate of 1.84%</b>. Looking at a confusion matrix reveals just how well the classification prediction model performed on the test data with an error rate of 1.497.
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/confusion.png?raw=true" alt="confusion matrix" width="280">
 
 <!-- Conclusion -->
 ## Conclusion
 
-The actual indicators predict even better, which is no surprise. What does feel like an accomplishment is how closely the original model also predicts the HDI. As stated in the project overview, the Human Development Indicator is meant to emphasize that people should be the ultimate criteria for assessing development, rather than economic growth alone. My assumption as to why the original prediction results based on regression are so close to the actual indicators is inherent of the relationship between the variables themselves (GNI and GDP, birth rate, infant mortality, and life expectancy). The interconnected nature of global development provides insight into what factors shed light into how we might continue to reduce poverty based on multiple dimensions that are economic, human, environmental, and so on.
+**Analyzing MAE and Model Performance**:
 
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/compare.png?raw=true" alt="compare results" width = "650">
+MAE measures the average magnitude of errors between predicted and actual values. It is measured with the same unit as the target variable (CO2). Standard Deviation (σ) represents the natural variability and spread of the data and is used to indicate how much actual values deviate from the mean. In general, the higher the STD, the harder it is to predict a target. While the STD was dramatically reduced in the previous outlier and normalization process, the STD remained high across emission types and primary activities. A quick review of the plot outputs allows you to visually see how close each prediction was to the actual observation. The MAE metric for each emissions type is the average of all predictions for every observation within that category.
 
+For both models, the MAE is significantly lower than the standard deviation, which indicates pretty decent prediction performance, but only in comparison to natural variation, especially considering the extreme variability of the data and how spread-out it is. It could likely be improved with more outlier removal and normalization since the STD is sensitive to outliers. Unfortunatly, the features didn't offer a lot of strong correlation, so it is likely more the time-series trend that offered the most prediction power, but deeper analysis would help better understand feature correlation and importance for an improved model. The lowest possible level of detail in this dataset is the Primary Activity, which is categorical and requires encoding for use in most machine learning models. Features that offer deeper level of detail and are directly correlated to emission amount would vastly improve prediction strength. As an example, within the Business travel emission type, knowing the size of the company's vehicle fleet or the amount of annual airplane travel would certainly offer more information for the model to use. 
 
+Comparing XGBoost to Random Forest, XGBoost seems to perform slightly better with an average MAE/STD ratio of .34 and is potentially a better suited model in this specific scenario. The ratios indicate the model has learned meaningful patterns in the data.
+
+**Outcome**:
+
+- The model's predictions are more accurate than what you'd expect from the natural variation in the data
+- The model has successfully captured some underlying patterns beyond random variation
+- The predictions are more reliable than simply using the mean value
+- The model is performing well relative to the inherent variability and spread in the data
+
+**Further Research**:
+
+1. Benchmarking against XGBoost and Random Forest
+2. Enhanced Feature Engineering - Dividing Emission Amount by Total Liabilities (Highest correlation), techniques to predict targets without time series evaluation
+3. Industry validation, especially on extreme outliers
+4. Continued normalization, skew transformation, and outlier analysis with possible imputation
+5. Testing models on nulls and testing ensemble approaches
+6. Testing Deep Learning and Neural Networks:
+    - More complex pattern recognition (identify noin-linear relationships, adapt to changing patterns)
+    - Better time series prediction
+    - Better handling of high-dimensional data with automatic feature extraction
+    - Better incorporate categorical data like Primary activity or Sector
 <br />
 
 <!-- Acknowledgements -->
@@ -460,21 +473,15 @@ The actual indicators predict even better, which is no surprise. What does feel 
 
 ### Data 
 * [World Bank World Development Indicators](https://databank.worldbank.org/source/world-development-indicators)
-* [UNDP Human Development Data](http://hdr.undp.org/en/data)
+* Scope 3 Emissions Data: Grant Funded Data for Research at Regis University
 
-### R Packages Utilized
-* [WDI](https://www.rdocumentation.org/packages/WDI/versions/2.7.1)
-* [plyr](https://www.rdocumentation.org/packages/plyr/versions/1.8.6)
-* [tidyr](https://www.rdocumentation.org/packages/tidyr/versions/0.8.3)
-* [corrplot](https://www.rdocumentation.org/packages/corrplot/versions/0.84)
-* [RColorBrewer](https://www.rdocumentation.org/packages/RColorBrewer/versions/1.1-2)
-* [ggplot2](https://www.rdocumentation.org/packages/ggplot2/versions/3.3.2)
-* [ggpubr](https://www.rdocumentation.org/packages/ggpubr/versions/0.4.0)
-* [caret](https://www.rdocumentation.org/packages/caret/versions/6.0-86)
-* [randomForest](https://www.rdocumentation.org/packages/randomForest/versions/4.6-14/topics/randomForest)
-* [caTools](https://www.rdocumentation.org/packages/caTools/versions/1.17.1)
-
-### References
-Van der Mensbrugghe, Dominique. (2016). Using R to Extract Data from the World Bank's World Development Indicators. <i>Journal of Global Economic Analysis</i>. 1. 251-283. 10.21642/JGEA.010105AF.
-
-UNDP. Human Development Index (HDI).](http://hdr.undp.org/en/content/human-development-index-hdi) http://hdr.undp.org/en/content/human-development-index-hdi
+### Python Packages Utilized
+* [wbgapi](https://www.rdocumentation.org/packages/WDI/versions/2.7.1)
+* pandas
+* numpy
+* matplotlib
+* seaborn
+* scipy stats
+* plotly express
+* xgboost
+* sklearn
