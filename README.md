@@ -20,7 +20,8 @@
 	  <ul>
 	  <li><a href="#boxcox">Box Cox Transformation</a>
 	  <li><a href="#quantile">Quantile Transformation</a>
-	  </li>ul>
+	  </li>
+	  </ul>
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
           <li><a href="#corelation">Correlation Analysis</a>
@@ -163,8 +164,9 @@ Kurtosis: 116921.06539086264
 *Looking at observation volume by year*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
+<!-- variation -->
+#### Extreme Variation Anlaysis (Company Level)
 
-#### Extreme Variation Analysis at a Company Level
 
 *Function to Find Accounts with Extreme Variation (inconsistent observations or extreme peaks/valleys from year to year*
 
@@ -216,7 +218,10 @@ Sample of vizualizations that validated the inconsistent accounts and were subse
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance1.png" alt="YoY.key" width="300"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance2.png" alt="YoY.key" width="300"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance3.png" alt="YoY.key" width="300">
 
-#### Z-Score Analysis at Primary Activity Level
+
+<!-- zscore -->
+#### Z-score Analysis (Primary Activity Level)
+
 
 *Gettings the z-scores for observations within each Primary Activty and storing z-scores over 3*
 
@@ -257,7 +262,9 @@ outliers = outliers.reset_index(drop=True)
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/zscore_primary_activity.png" alt="zscoresbyprimaryactivity.key" width="800">
 
 
-#### Custom IQR Binning to Reduce Percentile Volume
+
+<!-- iqr -->
+#### Custom IQR Binning to Reduce Percentile Distribtion/Volume
 
 *Creating a Scatterplot to better understand volume and distribution within custom percentiles*
 
@@ -338,7 +345,9 @@ Percentage of total accounts: 9.7%
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_percentile_after.png" alt="outliers_percentile_before.key" width="800">
 
 
+<!-- validation -->
 #### Validating Changes in Standard Deviation, Skew, and Kurtosis
+
 *Comparing final data post-outlier removal*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outlier_compare.png" alt="outlier_compare.key" width="300">
