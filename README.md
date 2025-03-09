@@ -343,7 +343,7 @@ Percentage of total accounts: 9.7%
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
-[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/3 - Skew Transformation.ipynb)
+[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/3%20-%20Skew%20Transformation.ipynb)
 
 **Analyzing Skew**
 
@@ -371,101 +371,18 @@ While all features should be transformed within the Machine Learning pipeline, t
    
 
 **Distributions Before and After Skew Transformation**
+
 Box Cox
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/boxcox.png" alt="BoxCox.key" width="820">
 
 Quantile
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
 
-<b>Correlation Matrix</b>
 
-To begin analysis, I removed any rows with NULL values and all non-numerical columns from the key.ind data frame in order to create a correlation matrix. This matrix allowed me to understand variables that highly correlated to the Human Development Index (HDI). For the correlation matrix, I used the corrplot and color brewer packages.
-
-```r
-Matrix <-cor(key.corr)
-corrplot(Matrix, type="upper", order="hclust", method="pie",
-         col=brewer.pal(n=8, name="RdYlBu"))
-```
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/matrix1.png?raw=true" alt="Correlation Matrix" width="650">
-
-The strength of the correlation is indicated by the pies. Blue indicates a positive correlation and red indicates a negative correlation. It is easy to see variables with strong correlation to HDI and I have outlined each of them. Using only these variables, I then took a deeper look at the regression. I created a data frame <b>predict.hdi</b> to further narrow down the data that will be used for building a prediction model. Looking at a matrix of scatterplots, there is obvious regression to HDI for the variables selected.
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/matrix2.png?raw=true" alt="Scatterplot Matrix" width="650">
-
-Individually, each variable shows strong linear regression and low p-values. The only variable with more of an exponential trend is GDP Per Capita. For the final model, I explored outliers and ultimately chose to include GDP per capita because, while not the only factor, it is a key economic development indicator. 
-
-<img align="left" src="https://github.com/julieanneco/predictingHDI/blob/photos/birth.png?raw=true" alt="birth rate" width="350">
-<br />
-<br />
-<b>Birth Rate and HDI</b>
-
-Residual standard error: 0.07639 on 4676 degrees of freedom
-
-Multiple R-squared:  0.7881,	Adjusted R-squared:  0.7881
-
-F-statistic: 1.739e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
-<br />
-<br />
-
-<img align="left" src="https://github.com/julieanneco/predictingHDI/blob/photos/edu.png?raw=true" alt="edu index" width="350">
-<br />
-
-<b>Education Index and HDI</b>
-
-Residual standard error: 0.05243 on 4676 degrees of freedom
-
-Multiple R-squared:  0.9002,	Adjusted R-squared:  0.9002 
-
-F-statistic: 4.217e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
-<br />
-<br />
-<br />
-
-<img align="left" src="https://github.com/julieanneco/predictingHDI/blob/photos/gdp.png?raw=true" alt="gdp per capita" width="350">
-<br />
-<br />
-<b>GDP Per Capita and HDI</b>
-
-Residual standard error: 0.1197 on 4676 degrees of freedom
-
-Multiple R-squared:   0.48,	Adjusted R-squared:  0.4798 
-
-F-statistic:  4316 on 1 and 4676 DF,  p-value: < 2.2e-16
-<br />
-<br />
-<br />
-<img align="left" src="https://github.com/julieanneco/predictingHDI/blob/photos/infant.png?raw=true" alt="infant mortality rate" width="350">
-<br />
-<br />
-<b>Infant Mortality Rate and HDI</b>
-
-Residual standard error: 0.07095 on 4676 degrees of freedom
-
-Multiple R-squared:  0.8172,	Adjusted R-squared:  0.8172 
-
-F-statistic: 2.091e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
-<br />
-<br />
-<br />
-<img align="left" src="https://github.com/julieanneco/predictingHDI/blob/photos/lifeexp.png?raw=true" alt="life expectancy" width="350">
-<br />
-<b>Life Expectancy and HDI</b>
-
-Residual standard error: 0.06848 on 4676 degrees of freedom
-
-Multiple R-squared:  0.8297,	Adjusted R-squared:  0.8297 
-
-F-statistic: 2.279e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
-<br />
-<br />
-<br />
-<br />
-<br />
-
-
-<br />
 * * *
-<br />
+
 <!-- Machine-Learning -->
 # 4. Machine Learning Models
 
