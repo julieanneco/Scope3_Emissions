@@ -100,20 +100,16 @@ country_total_ghg.head()
 
 # merge country code helper (converting country names to country codes for use as primary ID)
 country_total_ghg = pd.merge(country_total_ghg, country_codes, on='WB_Code')
-
-# rename year columns
-country_total_ghg = country_total_ghg.rename(columns={'YR2013': '2013', 'YR2014': '2014', 'YR2015': '2015', 'YR2016': '2016',
-    'YR2017': '2017', 'YR2018': '2018', 'YR2019': '2019', 'YR2020': '2020', 'YR2021': '2021', 'YR2022': '2022', 'YR2023': '2023'})
-
+# rename year columns (not shown)
 # drop index
 country_total_ghg.drop(columns=['index'], inplace=True)
 
 # Melt the dataframe to create a row for every country and every year
 melted_ghg = country_total_ghg.melt(
     id_vars=['incorporated_country'],      # Keep 'incorporated_country' as identifier variable
-    value_vars=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'],  # Year columns to pivot
-    var_name='Year',                       # Name for the new column containing old column names
-    value_name='country_total_ghg'         # Name for the new column containing values
+    value_vars=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'],
+    var_name='Year',                       
+    value_name='country_total_ghg'        
 )
 ```
 Here you can how the data is pulled from and what happens once it is transposed to easily merge with the Scope 3 Data.
