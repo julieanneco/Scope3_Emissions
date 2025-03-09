@@ -1,22 +1,3 @@
-<!-- 
-This <script> tag links to the Embedding API library as a JavaScript ES6 module. 
-To use the library in your web application, you need to set the type attribute to 
-module in the <script> tag. 
--->
-
-<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-
-<!-- 
-Initialize the API as part of your HTML code by using the <tableau-viz> web component. 
-After linking to the API library, the following code is all you need to embed a Tableau view into your HTML pages.
--->
-
-<tableau-viz id="tableauViz"       
-  src='https://public.tableau.com/views/Superstore_24/Overview'      
-  height='600px' width='600px' toolbar='bottom' hide-tabs>
-</tableau-viz>
-
-
 # Predicting Scope 3 Greenhouse Gas Emissions in Global Business
 
 <br />
@@ -397,28 +378,6 @@ The mean distance of the prediction to the actual HDI is -.0051, which is very i
 
 <!-- Analysis-Tablea -->
 ## Interactive Analysis in Tableau
-
-
-<!-- 
-This <script> tag links to the Embedding API library as a JavaScript ES6 module. 
-To use the library in your web application, you need to set the type attribute to 
-module in the <script> tag. 
--->
-
-<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
-
-<!-- 
-Initialize the API as part of your HTML code by using the <tableau-viz> web component. 
-After linking to the API library, the following code is all you need to embed a Tableau view into your HTML pages.
--->
-
-<tableau-viz id="tableauViz"       
-  src='[https://public.tableau.com/views/Superstore_24/Overview](https://public.tableau.com/views/EmissionsinBusiness/Story1)'      
-  height='800px' width='800px' toolbar='bottom' hide-tabs>
-</tableau-viz>
-
-https://public.tableau.com/views/EmissionsinBusiness/Story1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
-
 
 <div class='tableauPlaceholder' id='viz1741234238142' style='position: relative'><noscript><a href='#'><img alt='Story 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EmissionsinBusiness&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741234238142');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='2000px';vizElement.style.height='5027px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 
