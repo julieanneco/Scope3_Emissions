@@ -98,18 +98,8 @@ country_total_ghg.head()
 country_total_ghg = pd.merge(country_total_ghg, country_codes, on='WB_Code')
 
 # rename year columns
-country_total_ghg = country_total_ghg.rename(columns={
-    'YR2013': '2013',
-    'YR2014': '2014',
-    'YR2015': '2015',
-    'YR2016': '2016',
-    'YR2017': '2017',
-    'YR2018': '2018',
-    'YR2019': '2019',
-    'YR2020': '2020',
-    'YR2021': '2021',
-    'YR2022': '2022',
-    'YR2023': '2023'})
+country_total_ghg = country_total_ghg.rename(columns={'YR2013': '2013', 'YR2014': '2014', 'YR2015': '2015', 'YR2016': '2016',
+    'YR2017': '2017', 'YR2018': '2018', 'YR2019': '2019', 'YR2020': '2020', 'YR2021': '2021', 'YR2022': '2022', 'YR2023': '2023'})
 
 # drop index
 country_total_ghg.drop(columns=['index'], inplace=True)
@@ -122,24 +112,10 @@ melted_ghg = country_total_ghg.melt(
     value_name='country_total_ghg'         # Name for the new column containing values
 )
 ```
+Here you can how the data is pulled from and what happens once it is transposed to easily merge with the Scope 3 Data.
 
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/WDI.key.png?raw=true" alt="WDI.key" width="650">
-
-<b><i>Adding UNDP Data</b></i>
-
-UNDP Human Development Data can easily be downloaded as csv files at http://hdr.undp.org/en/data. I downloaded the files and cleaned up country names to match the WDI names using Excel before importing into R. It is possible to do this in R, but I felt Excel was more efficient. The UNDP data being joined to the WDI data includes:
-
-<ul>
-      <li>GNI Per Capita
-      <li>Human Development Indicator (HDI)
-      <li>Education Index
-      <li>Income Index
-</ul>
-
-After a bit of clean up, joining the UNDP data to the WDI.key data frame, and validation, this is the resulting final <b>key.ind</b> data frame of the Data Engineering phase that will be used for exploratory analysis.  
-
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/key.ind.png?raw=true" alt="key.ind" width="650">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="650">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="650">
 
 
 <!-- Outlier-Analysis -->
