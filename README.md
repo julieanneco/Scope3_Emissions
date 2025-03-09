@@ -372,10 +372,10 @@ While all features should be transformed within the Machine Learning pipeline, t
 
 **Distributions Before and After Skew Transformation**
 Box Cox
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/transform_boxcox.png" alt="BoxCox.key" width="320">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/boxcox.png" alt="BoxCox.key" width="820">
 
 Quantile
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/transform_quantile.png" alt="BoxCox.key" width="320">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
 
 <b>Correlation Matrix</b>
 
