@@ -43,8 +43,8 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 
 <!-- Data Engineering -->
 ## Data Engineering
-[!NOTE]
-Before merging, I have done some preliminary data cleaning and normalizing on the original data:
+> [!NOTE]
+> Before merging, I have done some preliminary data cleaning and normalizing on the original data:
 - Normalize all country names
 - Map and create regions
 
