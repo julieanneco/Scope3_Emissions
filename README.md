@@ -147,7 +147,7 @@ original_kurtosis = outlier_df['Scope_3_emissions_amount'].kurtosis()
 Skew: 325.8187947316704
 
 Kurtosis: 116921.06539086264
-
+<br />
 *Looking at observation volume by year*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
@@ -202,7 +202,7 @@ def find_extreme_variations(outlier_df, value_column, year_column='Year',
 Sample of vizualizations that validated the inconsistent accounts and were subsequently removed from the data:
 
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance1.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance2.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance3.png" alt="YoY.key" width="200">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance1.png" alt="YoY.key" width="300"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance2.png" alt="YoY.key" width="300"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance3.png" alt="YoY.key" width="300">
 
 #### Z-Score Analysis at Primary Activity Level
 
@@ -235,11 +235,18 @@ outliers = outliers.sort_values(by='z_score', key=abs, ascending=False)
 outliers = outliers.reset_index(drop=True)
 ```
 
+*Vizualizing Outliers*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_primary activity.png.png" alt="outliersbyprimaryactivity.key" width="400">
+
+
 #### Custom IQR Binning to Reduce Percentile Volume
 
 
 #### Validating Changes in Standard Deviation, Skew, and Kurtosis
+*Comparing final data post-outlier removal*
 
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outlier_compare.png" alt="outlier_compare.key" width="300">
 
 * * *
 
