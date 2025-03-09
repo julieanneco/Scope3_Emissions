@@ -25,10 +25,13 @@
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
           <li><a href="#corelation">Correlation Analysis</a>
-          <li><a href="#random-forest">Random Forest</a>
-          <li><a href="#xgboost">XGBoost</a>
+          <li><a href="#encoding">Feature Engineering and Encoding</a>
+          <li><a href="#overview">Machine Learning Overview</a>
+          <li><a href="#random-forest">Random Forest Results</a>
+          <li><a href="#xgboost">XGBoost Results</a>
           <li><a href="#performance">Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)</a>
-          </ul>
+          <li><a href="#performance">Comparing Models</a>
+	  </ul>
     <li><a href="#Analysis-Tableau">Interactive Reseach Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
     <li><a href="#acknowledgements">Acknowledgements</a>
@@ -407,43 +410,204 @@ While all features should be transformed within the Machine Learning pipeline, t
 <!-- correlation -->
 ## Correlation Analysis
 
-Correlation of Target Variable (y) to Features (X)
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
+*Heat Map Showing Correlation of Target Variable (y) to Features (X)*
 
-Correlation of Features
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/heatmap.png" alt="heatmap.key" width="820">
 
+Removing highly correlated features is a crucial preprocessing step in machine learning to improve model performance, interpretability, generalization, and computational efficiency. It helps create more robust and efficient models that are better suited for real-world applications. The data available has many highly correlated features and this is due to many sub variables or different metrics for similar values, such as revenue/profit, liabilities, etc. I needed to remove a large portion of features to maintain performance. 
+
+
+*Correlation of Features after Removing Sub-Variables and Highly Correlated Features*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/corr_features.png" alt="Quantile.key" width="820">
+
+<!-- encoding -->
+## Feature Engineering and Encoding
+
+Most Machine Learning models require data encoding for categorical values. There are 2 main encoding methods used:
+
+*1. Label encoding*
+*2. One hot encoding*
+
+Label encoding assigns a numerical value to every value in a categorical column. This method essentially converts a unique string into a unique number. This route can be problematic to the algorithm if the model assigns value to the numbers beyond categorical limitation. For instance, primary activity has over 50 values. It's safe to assume the model might interpret a value of 1 differently than a value of 50. One hot encoding converts every categorical value in each column to a binary value. For machine learning, this is the more ideal option, as it allows every category to be represented by its own binary feature. This prevents the model from assuming an ordinal relationship or ranking  between categories, which can cause inaccurate predictions. Because this dataset includes categorical columns wih many categories, one hot encoding will result in hundreds of features in order to capture every possible categorical value. This will likey result in overly high dimensionality and accumulated feature noise with very little correlation for reliable predictions. To decide which columns to keep for training, I one hot encoded Primary sector and Primary activity. I chose one hot encoded given the limitations of label encoding for categories with numerous values.
+
+```python
+# One-hot encode Primary Sector
+sector_dummies = pd.get_dummies(df['Primary sector'], prefix='sector')
+# Calculate correlations with Scope_3_emissions_amount
+sector_correlations = sector_dummies.apply(lambda x: x.corr(df['Scope_3_emissions_amount']))
+# Append one-hot encoded columns to original dataframe
+df = pd.concat([df, sector_dummies], axis=1)
+
+# One-hot encode Primary Activity
+sector_dummies = pd.get_dummies(df['Primary activity'], prefix='activity')
+# Calculate correlations with Scope_3_emissions_amount
+sector_correlations = sector_dummies.apply(lambda x: x.corr(df['Scope_3_emissions_amount']))
+# Append one-hot encoded columns to original dataframe
+df = pd.concat([df, sector_dummies], axis=1)
+```
+
+I calulated correlations, but the results of one hot encoding is not going to provide any significant correlation. It is best tested in the model and out of the model to see if value is added. For this prelimiary model, I used both encoded features in both models. 
+
+## Machine Learning Overview
+
+The models that best suit the nature of this data include:
+
+##### 1. **Random Forest**
+##### 2. **XGBoost**
+
+Both models work well for the follwing reasons:
+- Both are able to handle complex data relationships, which is a characteristic of Scope 3 emissions data.
+- Able to capture non-linear relationships and interactions between variables.
+- Robust to outliers, which common in emissions data and are less prone to overfitting.
+- Work well with mixed data types (numerical and categorical), which is common in emissions reporting.
+- Feature Importance: Both provide clear insights into which factors most influence emissions and can help identify key areas for emissions reduction.
+- Scope 3 data frequently has gaps due to reporting challenges. While missing data was removed from the final dataset, it would be worthwhile to also test the models without data removal and compare the results as both models do well with handling missing values. (Random Forest can operate with missing data without imputation; XGBoost has built-in methods for missing value handling)
+
+##### **Model Design**
+
+The algorithms will train on a time-series of all previous years in conjunction with features in order to predict the Scope 3 Emissions Amount for the most recent year (2023) within each Emission type category.
+
+##### **MAE (Mean Absolute Error)**
+
+Performance will be analyzed using MAE. MAE measures the average magnitude of errors between predicted and actual values, without considering their direction (high or low). It is best in this prediction scenario because:
+
+- The absolute scale of errors matters, as the absolute difference between actual and predicted emission amounts is highly important.
+- MAE is in the same unit as the emission amount and both over and under-predictions are equally important.
+- Direct, interpretable results and error measurements are needed in this scenario (MAE is more interpretable than percentage-based errors).
+- Outliers exist but shouldn't dominate the error metric (MAE is more robust to outliers than squared metrics, such as MSE and RMSE).
+
+##### *Code*
+The code for each model will do the following (with slight variation specific to each model):
+1. Creates a pipeline with preprocessing (StandardScaler for numeric features)
+2. Uses TimeSeriesSplit for proper time series validation on Year
+3. Processes each emission type separately
+4. Calculates MAE for each emission type
+
+This approach provides a robust way to analyze and predict emissions while maintaining the time series nature of the data and handling different emission types separately, given the variability within this category.
+
+```python
+# Initialize results storage
+results_dict = {}
+# Get unique emission types
+emission_types = df['Scope_3_emissions_type'].unique()
+# Identify numeric columns to scale (excluding Year, target, and encoded categorical features)
+all_numeric_columns = df.select_dtypes(include=['int64', 'float64']).columns
+columns_to_scale = [col for col in all_numeric_columns 
+                   if col not in ['Year', 'Scope_3_emissions_amount','account_id']
+                   and not col.startswith(('sector_', 'activity_'))]
+categorical_columns = [col for col in df.columns 
+                      if col.startswith(('sector_', 'activity_'))]
+
+# Create preprocessing steps for StandardScaler
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), columns_to_scale)
+    ],
+    remainder='passthrough',
+    verbose_feature_names_out=False)
+# Get feature names after preprocessing
+feature_names = (columns_to_scale + 
+                ['Year'] + 
+                categorical_columns)
+# Create pipeline with preprocessor
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))])
+
+for emission_type in emission_types:
+    # Filter data for current emission type
+    emission_df = df[df['Scope_3_emissions_type'] == emission_type].copy()
+    # Sort by Year to ensure chronological order
+    emission_df = emission_df.sort_values('Year')
+    # Get the most recent year
+    max_year = emission_df['Year'].max()
+    
+    # Split data into train (previous years) and test (most recent year)
+    train_data = emission_df[emission_df['Year'] < max_year]
+    test_data = emission_df[emission_df['Year'] == max_year]
+    # Prepare features and target
+    X_train = train_data[columns_to_scale + ['Year'] + categorical_columns].copy()
+    y_train = train_data['Scope_3_emissions_amount']
+    X_test = test_data[columns_to_scale + ['Year'] + categorical_columns].copy()
+    y_test = test_data['Scope_3_emissions_amount']
+    
+    # Fit pipeline
+    pipeline.fit(X_train, y_train)
+    # Make predictions
+    y_pred = pipeline.predict(X_test)
+    # Calculate MAE
+    mae = np.mean(np.abs(y_test - y_pred))
+    # Store results in dictionary with emission_type as key
+    results_dict[emission_type] = {
+        'mae': mae,
+        'actuals': y_test.tolist(),
+        'predictions': y_pred.tolist(),
+        'prediction_year': max_year}
+```
+
+
+<!-- random-forest -->
+## Random Forest Results
+
+*Results for All Emissions Types - Actuals vs Predictions *
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF1.png" alt="randomforest1.key" width="900">
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF2.png" alt="randomforest2.key" width="900">
 
 
 <!-- xgboost -->
-## XGBoost
+## XGBoost Results
 
-The <b>predict.hdi</b> data frame has been cleaned and validated for regression. Using this final data frame that resulted from steps 1 and 2, I decided to test a random forest prediction model. To begin, I split the data into 2 partitions using the caret package. I chose to partition 90% for training and 10% for testing because I wanted to have as much data to train as possible, though standard partitioning is often around 80/20.
-```{r}
-set.seed(123)
-hdi.samples <- predict.hdi$hdi %>%
-	createDataPartition(p = 0.9, list = FALSE)
-train.hdi  <- predict.hdi[hdi.samples, ]
-test.hdi <- predict.hdi[-hdi.samples, ]
-```
+*Results for All Emissions Types - Actuals vs Predictions *
 
-Using the randomForest package, I fit a basic random forest regression model with 500 trees and a mtry of 3. I then plotted the error versus the number of trees.
-```{r}
-hdi.rf.1 <- randomForest(hdi ~ ., data = train.hdi, ntree=500, mtry = 3, 
-	importance = TRUE, na.action = na.omit) 
-print(hdi.rf.1) 
-plot(hdi.rf.1) 
-```
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/XGB1.png" alt="XGBoost1.key" width="900">
 
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/trees.png?raw=true" alt="errors" width="500">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/XGB2.png" alt="XGBoost2.key" width="900">
 
-After tuning and testing for out of bag (OOB) error improvement and also looking at the significance of each variable for possible mean changes, I determined the original model was still the best fit with a <b>root-mean square error of .0087</b> and an <b>explained variance of 99.76%</b>, which both indicate a highly valid fit. Moving forward with this model, I made predictions on the test data, converted the predictions to a data frame, and merged them with the original test data to see a side-by-side comparison. This sample shows just how close the prediction model gets to the actual human development index based on the variables used in the random forest training.
 
-<img src="https://github.com/julieanneco/predictingHDI/blob/photos/predictions1.png?raw=true" alt="predictions" width="450">
+<!-- performance -->
+## Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)
 
-The mean distance of the prediction to the actual HDI is -.0051, which is very impressive given some of the variance in each variable dataset. I created a plot to visualize the prediction variance for the entire test data. The model seems to predict higher indices better, but only by a nominal amount. 
+#### Prediction Variance
 
-![alt text](https://github.com/julieanneco/predictingHDI/blob/photos/RF-R-Results.jpg?raw=true)
+*Grouped Scatterplot*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_Variance.png" alt="RFVariance.key" width="800">
+
+*Distribution*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_Variance_Dist.png" alt="RFVariance.key" width="800">
+
+The remaining outliers are pushing the variance into higher percentiles, which is expected. The model has difficulty predicting the highest values and interestingly predicts extreme negative values in categories where extreme positive values are present.  
+
+
+#### Cross Validation
+*3 Fold Cross-Validation*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_CV.png" alt="CV.key" width="800">
+
+The MAE is generally consistent across 3 cross validation folds.
+
+<!-- compare -->
+## Comparing Models
+
+**Final Metrics: Emissions Type Averages**
+
+*Random Forest*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_AVG.png" alt="RFavg.key" width="800">
+
+*XGBoost*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/XGB_AVG.png" alt="XGBavg.key" width="800">
+
+**Which model performed better overall?**
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_1.png" alt="compare.key" width="800">
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_2.png" alt="compare.key" width="500">
 
 
 <!-- Analysis-Tableau -->
