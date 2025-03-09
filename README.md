@@ -144,9 +144,11 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 original_skew = outlier_df['Scope_3_emissions_amount'].skew()
 original_kurtosis = outlier_df['Scope_3_emissions_amount'].kurtosis()
 ```
+<table><tr><td>
 Skew: 325.8187947316704
 
 Kurtosis: 116921.06539086264
+</td></tr></table>
 
 
 <br />
@@ -238,15 +240,95 @@ outliers = outliers.reset_index(drop=True)
 ```
 
 *Vizualizing Outliers: Outliers Year over Year*
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_yoy,png" alt="outliersyoy.key" width="400">
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_yoy.png" alt="outliersyoy.key" width="600">
 
 
 *Vizualizing Outliers: A sample of z-scores by Primary Activity*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/zscore_primary_activity.png" alt="zscoresbyprimaryactivity.key" width="400">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/zscore_primary_activity.png" alt="zscoresbyprimaryactivity.key" width="800">
 
 
 #### Custom IQR Binning to Reduce Percentile Volume
+
+*Creating a Scatterplot to better understand volume and distributuion within custom percentiles*
+
+```
+# calculate custom percentiles
+percentiles = [25, 50, 80, 90, 95, 96, 97, 98, 99, 100]
+percentile_values = {p: outlier_df_cleaned['Scope_3_emissions_amount'].quantile(p/100) for p in percentiles}
+# Create custom color scale for different percentile ranges
+color_scale = ['#d4e6f1','#a9cce3','#7fb3d5','#5499c7','#2980b9', '#2471a3', '#1f618d', '#1a5276', '#1b4f72', '#641e16']
+# Initialize the figure
+fig = go.Figure()
+
+# Create percentile ranges and add traces for each range
+prev_percentile = 0
+for i, percentile in enumerate(percentiles):
+    if i == 0:
+        mask = outlier_df_cleaned['Scope_3_emissions_amount'] <= percentile_values[percentile]
+        start = 0
+    else:
+        mask = (outlier_df_cleaned['Scope_3_emissions_amount'] > percentile_values[prev_percentile]) & \
+               (outlier_df_cleaned['Scope_3_emissions_amount'] <= percentile_values[percentile])
+        start = prev_percentile
+    
+    data = outlier_df_cleaned[mask].copy()
+    data['percentile_range'] = f"{start}-{percentile}"
+   
+    if len(data) > 0:  # Only add trace if there is data in this range
+        fig.add_trace(
+            go.Scatter(
+                x=data.index,
+                y=data['Scope_3_emissions_amount'],
+                mode='markers',
+                name=f"{start}-{percentile}th percentile",
+                marker=dict(
+                    color=color_scale[i] if i < len(color_scale) else color_scale[-1],
+                    size=6),
+                hovertemplate=(
+                    '<b>Account ID:</b> %{customdata[0]}<br>' +
+                    '<b>Account Name:</b> %{customdata[1]}<br>' +
+                    '<b>Primary Activity:</b> %{customdata[2]}<br>' +
+                    '<b>Scope 3 Emissions:</b> %{y:,.2f}<br>' +
+                    '<b>Percentile Range:</b> %{customdata[3]}<br>'),
+                customdata=np.column_stack((
+                    data['account_id'],
+                    data['account_name'],
+                    data['Primary activity'],
+                    data['percentile_range']))))
+    prev_percentile = percentile
+# Add lines for each percentile (not shown)
+# Update layout (not shown)
+fig.show()
+```
+
+**Percentile Results Before**
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_percentile_before.png" alt="outliers_percentile_before.key" width="800">
+
+*Assessing Rows in the 99th percentile*
+
+```
+# how many accounts have at least 1 row with a scope 3 emissions amount in the 99th percentile or higher?
+overall_99th = outlier_df_cleaned['Scope_3_emissions_amount'].quantile(0.99)
+high_emission_accounts_99 = outlier_df_cleaned[
+    outlier_df_cleaned['Scope_3_emissions_amount'] >= overall_99th
+]['account_id'].unique()
+n_high_accounts = len(high_emission_accounts_99)
+```
+<table><tr><td>
+Number of accounts with emissions in 99th percentile or higher: 119
+	
+Percentage of total accounts: 9.7%
+
+99th percentile threshold: 52,527,444.36
+</td></tr></table>
+
+**Percentile Results After Removing Values in the 99th Percentile**
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_percentile_after.png" alt="outliers_percentile_before.key" width="800">
+
+
+
 
 
 #### Validating Changes in Standard Deviation, Skew, and Kurtosis
