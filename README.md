@@ -58,7 +58,7 @@ The inital data set includes 181,326 rows with the following unique columns and 
 
 Initial analysis of the data shows significant peaks and valley when looking at the Average Scope 3 Emissions amount year over year (Yoy). The dataset indicates a high probability of discrepancy, inconsistency, extreme outliers, and skew. The lack of uniform/linear distributuion suggests unreliable data that creates consumption challenges for analysis and machine learning.
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/EDA.png" alt="EDA.key" width="500">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/EDA.png" alt="EDA.key" width="700">
 
 Highly skewed data with a very non-normal distribution can present a range of challenges, especially in statistical modeling and analysis. Some key difficulties include:
 
@@ -649,14 +649,15 @@ Comparing XGBoost to Random Forest, XGBoost seems to perform slightly better wit
 - The predictions are more reliable than simply using the mean value
 - The model is performing well relative to the inherent variability and spread in the data
 
-**Further Research**:
+**Further Research and Testing on Highly Skewed Data**:
 
 1. Benchmarking against XGBoost and Random Forest
 2. Enhanced Feature Engineering - Dividing Emission Amount by Total Liabilities (Highest correlation), techniques to predict targets without time series evaluation
 3. Industry validation, especially on extreme outliers
 4. Continued normalization, skew transformation, and outlier analysis with possible imputation
-5. Testing models on nulls and testing ensemble approaches
-6. Testing Deep Learning and Neural Networks:
+5. Testing models on nulls, testing other ensemble approaches and non-parametric methods
+6. Testing bootstrapping and resampling to ensure robust statistical inference, as well as potential techniques, such as cost-sensitive learning or SMOTE (Synthetic Minority Over-sampling Technique)
+7. Testing Deep Learning and Neural Networks:
     - More complex pattern recognition (identify noin-linear relationships, adapt to changing patterns)
     - Better time series prediction
     - Better handling of high-dimensional data with automatic feature extraction
