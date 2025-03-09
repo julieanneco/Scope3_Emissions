@@ -42,7 +42,7 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 <br />
 
 <!-- Data Engineering -->
-## Data Engineering
+## 1. Data Engineering
 > [!NOTE]
 > Before merging, I have done some preliminary data cleaning and normalizing on the original data:
 > - Normalize all country names
@@ -114,17 +114,36 @@ melted_ghg = country_total_ghg.melt(
 ```
 Here you can how the data is pulled from and what happens once it is transposed to easily merge with the Scope 3 Data.
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="650">
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="650">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="620">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
 
 
 <!-- Outlier-Analysis -->
-## Outlier Analysis and Removal
+## 2. Outlier Analysis and Removal
+[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
+
+Due to the highly skewed nature of the Scope 3 Emissions data, where extreme variation, distribution, and outliers exist, outlier analysis and removal proved to be a complex and cruical step. While this process requires far more analysis, validation, and transformation, this preliminary outlier removal offers the beginning steps to this deep analytical process.
+
+Tableau was better suited to vizualize and analyze outliers as it offers and easier way to interact with and drill into, in order to better understand the distribution and inherent issues within the dataset. 
+
+**Click here to visit the [Outlier Dashboard] (https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/OutlierDashboardScope3Emissions/Outlier).**
+<div class='tableauPlaceholder' id='viz1741486011909' style='position: relative'><noscript><a href='#'><img alt='Outlier ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ou&#47;OutlierDashboardScope3Emissions&#47;Outlier&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='OutlierDashboardScope3Emissions&#47;Outlier' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ou&#47;OutlierDashboardScope3Emissions&#47;Outlier&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741486011909');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='2000px';vizElement.style.height='2027px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='2000px';vizElement.style.height='2027px';} else { vizElement.style.width='100%';vizElement.style.height='4377px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+
+The Outlier Dashboard offered valuable insight to understand the nature of outliers. Using Python, I then implemented a series of processes to handle outliers, extreme variation anlaysis at a company level, z-score analysis at various categorical levels, and custom IQR binning to reduce percentile volumes.
+
+#### Extreme Variation
+
+
+#### Z-Score
+
+
+### Custom IQR Binning
 
 
 
 <!-- Skew-Transformation -->
-## Skew Transformation
+## 3. Skew Transformation
 
 [View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step2_EDA.Rmd)
 
@@ -215,7 +234,7 @@ F-statistic: 2.279e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
 <br />
 
 <!-- Machine-Learning -->
-# Machine Learning Models
+# 4. Machine Learning Models
 
 [View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step3_ML.Rmd)
 
