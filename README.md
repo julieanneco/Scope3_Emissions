@@ -418,14 +418,16 @@ Removing highly correlated features is a crucial preprocessing step in machine l
 
 *Correlation of Features after Removing Sub-Variables and Highly Correlated Features*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/corr_features.png" alt="Quantile.key" width="820">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/corr_features.png" alt="Quantile.key" width="500">
 
 <!-- encoding -->
 ## Feature Engineering and Encoding
 
 Most Machine Learning models require data encoding for categorical values. There are 2 main encoding methods used:
 
+
 *1. Label encoding*
+
 *2. One hot encoding*
 
 Label encoding assigns a numerical value to every value in a categorical column. This method essentially converts a unique string into a unique number. This route can be problematic to the algorithm if the model assigns value to the numbers beyond categorical limitation. For instance, primary activity has over 50 values. It's safe to assume the model might interpret a value of 1 differently than a value of 50. One hot encoding converts every categorical value in each column to a binary value. For machine learning, this is the more ideal option, as it allows every category to be represented by its own binary feature. This prevents the model from assuming an ordinal relationship or ranking  between categories, which can cause inaccurate predictions. Because this dataset includes categorical columns wih many categories, one hot encoding will result in hundreds of features in order to capture every possible categorical value. This will likey result in overly high dimensionality and accumulated feature noise with very little correlation for reliable predictions. To decide which columns to keep for training, I one hot encoded Primary sector and Primary activity. I chose one hot encoded given the limitations of label encoding for categories with numerous values.
@@ -446,7 +448,7 @@ sector_correlations = sector_dummies.apply(lambda x: x.corr(df['Scope_3_emission
 df = pd.concat([df, sector_dummies], axis=1)
 ```
 
-I calulated correlations, but the results of one hot encoding is not going to provide any significant correlation. It is best tested in the model and out of the model to see if value is added. For this prelimiary model, I used both encoded features in both models. 
+I calculated correlations, but the results of one hot encoding is not going to provide any significant correlation. It is best tested in the model and out of the model to see if value is added. For this preliminary model, I used both encoded features in both models. 
 
 ## Machine Learning Overview
 
@@ -616,7 +618,7 @@ The MAE is generally consistent across 3 cross validation folds.
 
 MAE measures the average magnitude of errors between predicted and actual values. It is measured with the same unit as the target variable (CO2). Standard Deviation (σ) represents the natural variability and spread of the data and is used to indicate how much actual values deviate from the mean. In general, the higher the STD, the harder it is to predict a target. While the STD was dramatically reduced in the previous outlier and normalization process, the STD remained high across emission types and primary activities. A quick review of the plot outputs allows you to visually see how close each prediction was to the actual observation. The MAE metric for each emissions type is the average of all predictions for every observation within that category.
 
-For both models, the MAE is significantly lower than the standard deviation, which indicates pretty decent prediction performance, but only in comparison to natural variation, especially considering the extreme variability of the data and how spread-out it is. It could likely be improved with more outlier removal and normalization since the STD is sensitive to outliers. Unfortunatly, the features didn't offer a lot of strong correlation, so it is likely more the time-series trend that offered the most prediction power, but deeper analysis would help better understand feature correlation and importance for an improved model. The lowest possible level of detail in this dataset is the Primary Activity, which is categorical and requires encoding for use in most machine learning models. Features that offer deeper level of detail and are directly correlated to emission amount would vastly improve prediction strength. As an example, within the Business travel emission type, knowing the size of the company's vehicle fleet or the amount of annual airplane travel would certainly offer more information for the model to use. 
+For both models, the MAE is significantly lower than the standard deviation, which indicates pretty decent prediction performance, but only in comparison to natural variation, especially considering the extreme variability of the data and how spread-out it is. It could likely be improved with more outlier removal and normalization since the STD is sensitive to outliers. Unfortunately, the features didn't offer a lot of strong correlation, so it is likely more the time-series trend that offered the most prediction power, but deeper analysis would help better understand feature correlation and importance for an improved model. The lowest possible level of detail in this dataset is the Primary Activity, which is categorical and requires encoding for use in most machine learning models. Features that offer deeper level of detail and are directly correlated to emission amount would vastly improve prediction strength. As an example, within the Business travel emission type, knowing the size of the company's vehicle fleet or the amount of annual airplane travel would certainly offer more information for the model to use. 
 
 Comparing XGBoost to Random Forest, XGBoost seems to perform slightly better with an average MAE/STD ratio of .34 and is potentially a better suited model in this specific scenario. The ratios indicate the model has learned meaningful patterns in the data.
 
