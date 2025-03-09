@@ -154,9 +154,8 @@ Here you can see how the data is pulled from the API and what happens once it is
 
 <!-- Outlier-Analysis -->
 ## Outlier Analysis and Removal
-[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb) <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
-*Ctrl+Click to open in new tab*
 
 Due to the highly skewed nature of the Scope 3 Emissions data, where extreme variation, distribution, and outliers exist, outlier analysis and removal proved to be a complex and cruical step. While this process requires far more analysis, validation, and transformation, this preliminary outlier removal offers the beginning steps to this deep analytical process.
 
@@ -381,9 +380,7 @@ Percentage of total accounts: 9.7%
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
-[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/3%20-%20Skew%20Transformation.ipynb)
-
-*Ctrl+Click to open in new tab*
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/3%20-%20Skew%20Transformation.ipynb) <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
 **Analyzing Skew**
 
@@ -426,9 +423,7 @@ While all features should be transformed within the Machine Learning pipeline, t
 <!-- Machine-Learning -->
 # 4. Machine Learning Models
 
-[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/4%20-%20Machine%20Learning.ipynb)
-
-*Ctrl+Click to open in new tab*
+[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/4%20-%20Machine%20Learning.ipynb) <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
 
 <!-- correlation -->
@@ -616,6 +611,7 @@ The remaining outliers are pushing the variance into higher percentiles, which i
 
 The MAE is generally consistent across 3 cross validation folds.
 
+
 <!-- compare -->
 ## Comparing Models
 
@@ -623,18 +619,19 @@ The MAE is generally consistent across 3 cross validation folds.
 
 *Random Forest*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_AVG.png" alt="RFavg.key" width="800">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/RF_AVG.png" alt="RFavg.key" width="500">
 
 *XGBoost*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/XGB_AVG.png" alt="XGBavg.key" width="800">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/XGB_AVG.png" alt="XGBavg.key" width="500">
 
 **Which model performed better overall?**
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_1.png" alt="compare.key" width="800">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_1.png" alt="compare.key" width="700">
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_2.png" alt="compare.key" width="500">
 
+* * *
 
 <!-- Conclusion -->
 ## Conclusion
