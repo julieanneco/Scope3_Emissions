@@ -1,6 +1,6 @@
 <div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
 
-**[Click Here to Visit the Scope 3 Emissions Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)**
+**[Click Here to Visit the Scope 3 Emissions Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)** <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
 * * *
 
@@ -161,7 +161,7 @@ Due to the highly skewed nature of the Scope 3 Emissions data, where extreme var
 
 Tableau was better suited to vizualize and analyze outliers as it offers and easier way to interact with and drill into, in order to better understand the distribution and inherent issues within the dataset. 
 
-**[Click here to visit the Outlier Dashboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/OutlierDashboardScope3Emissions/Outlier)**
+**[Click here to visit the Outlier Dashboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/OutlierDashboardScope3Emissions/Outlier)**  <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 <div class='tableauPlaceholder' id='viz1741486011909' style='position: relative'><noscript><a href='#'><img alt='Outlier ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ou&#47;OutlierDashboardScope3Emissions&#47;Outlier&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='OutlierDashboardScope3Emissions&#47;Outlier' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ou&#47;OutlierDashboardScope3Emissions&#47;Outlier&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
 
 <br />
