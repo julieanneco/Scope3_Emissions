@@ -43,7 +43,7 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 
 <!-- Data Engineering -->
 ## Data Engineering
-
+[!NOTE]
 Before merging, I have done some preliminary data cleaning and normalizing on the original data:
 - Normalize all country names
 - Map and create regions
@@ -58,166 +58,71 @@ The World Bank API (WDIAPI) has an integrated Python package that simplifies the
 The intial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
 </details>
 
-The WDI library is installed and loaded like any standard package. Below is the basic code for grabbing data and merging:
+The WDI library is installed and loaded like any standard package. Merging requires a set of steps that can be re-used for any indicator within the API. The steps include:
+1. Get the specific indicator code. The *series.info* tool allows you to easily query a keyword to find indicators in the API
+2. Create a dataframe using the API, defining the indicator code, country codes, and range/interval of years
+3. Transpose the dataframe so that country becomes rows and years become columns
+4. Merge to the helper code dataframe to get the incorporated country
+5. Melt the dataframe so that every row is a combination of country and year with the indicator as the value
+6. Join the final indicator dataframe to the dataset on country and year
+7. 
 ```python
 # find total emissions codes and then use the desired code
 wb.series.info(q='greenhouse gas emissions')
 
+# get total greenhouse gas emissions for all incorporated countries
+country_total_ghg = wb.data.DataFrame(
+'EN.GHG.ALL.LU.MT.CE.AR5',      # World Bank Indicator Code (using "Total greenhouse gas emissions including LULUCF (Mt CO2e)")
+# country codes inside brackets
+['GBR','ESP','USA','ITA','ZAF','IND','FRA','CHE','NLD','JPN','BRA','FIN'
+,'CAN','NZL','TUR','DEU','IRL','AUS','AUT','LUX','NOR','SWE','PRT'
+,'ARG','DNK','BEL','HKG','MEX','KOR','SGP','CHL','CHN','MYS','ISR','GRC'
+,'COL','HUN','RUS','THA','BMU','PER','PAK','SWZ','IDN','NGA','KEN','ZWE'
+,'PRY','PHL','POL','ARE','SVN','EGY','VEN','ROU','SVK','CYP','CRI','SLV'
+,'ISL','JAM','HND','BLR','ECU','CZE','GHA','FJI','PAN','GTM','MAC','MLT'
+,'VNM','KAZ','SAU','LKA','CYM','JOR','MNG','LTU','SMR','BGR','BGD','BOL'
+,'SRB','MOZ','KWT','IMN','MUS','KHM','URY','QAT','EST','UKR','DOM','MAR'
+,'LBY','CMR','GUY','OMN','MCO','MHL','LIE']
+,range(2013, 2025, 1)           # range of years and interval
+, index = 'time')
 
+# transpose rows to columns and create dataframe
+country_total_ghg = country_total_ghg.transpose()
+country_total_ghg = country_total_ghg.reset_index()
+country_total_ghg['WB_Code'] = country_total_ghg['index']
+country_total_ghg.rename(columns={1: 'WB_Code'}, inplace=True)
+country_total_ghg.drop(columns=['index'], inplace=True)
+country_total_ghg.head()
+
+# merge country code helper (converting country names to country codes for use as primary ID)
+country_total_ghg = pd.merge(country_total_ghg, country_codes, on='WB_Code')
+
+# rename year columns
+country_total_ghg = country_total_ghg.rename(columns={
+    'YR2013': '2013',
+    'YR2014': '2014',
+    'YR2015': '2015',
+    'YR2016': '2016',
+    'YR2017': '2017',
+    'YR2018': '2018',
+    'YR2019': '2019',
+    'YR2020': '2020',
+    'YR2021': '2021',
+    'YR2022': '2022',
+    'YR2023': '2023'})
+
+# drop index
+country_total_ghg.drop(columns=['index'], inplace=True)
+
+# Melt the dataframe to create a row for every country and every year
+melted_ghg = country_total_ghg.melt(
+    id_vars=['incorporated_country'],      # Keep 'incorporated_country' as identifier variable
+    value_vars=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'],  # Year columns to pivot
+    var_name='Year',                       # Name for the new column containing old column names
+    value_name='country_total_ghg'         # Name for the new column containing values
+)
 ```
 
-The WDI function to access and download data:
-```r
-# download multiple indicators into one data frame
-dataframe = WDI(indicator= c("vector code","vector code", etc.), country="all", start=year, end=year)
-
-# download a single indicator into a data frame
-dataframe = WDI(indicator='vector code', country="all", start=year, end=year)
-```
-
-To download data for this project, I first created individual data frames for each indicator I wanted to analyze. By creating a separate data frame for each indicator, I was able to more easily analyze and update each one as needed throughout the process. I included all countries and selected the years 1990 to 2018 because data in earlier years has more NULL values. The following WDI indicators were downloaded:
-
-<ul>
-      <li>Population
-      <li>GDP per capita (constant 2010 US$)	
-      <li>GDP Per capita income
-      <li>Population density (people per sq. km of land area)	
-      <li>Greenhouse Gas Emissions (kt)
-      <li>Total C02 emissions (kt)
-      <li>CO2 emissions (metric tons per capita)
-      <li>PM2.5 air pollution, mean annual exposure (micrograms per cubic meter)	
-      <li>Birth rate, crude (per 1,000 people)	
-      <li>Fertility rate, total (births per woman)	
-      <li>Imports of goods and services (% of GDP)	
-      <li>Exports of goods and services (% of GDP)		
-      <li>Life expectancy at birth, total (years)	
-      <li>Mortality rate, infant (per 1,000 live births)	
-      <li>Mortality rate, under-5 (per 1,000 live births)	
-      <li>Unemployment, total (% of total labor force) (modeled ILO estimate)	
-      <li>Adjusted net enrolment rate, lower secondary
-      <li>Adjusted net enrolment rate, primary	
-      <li>Adjusted net enrolment rate, upper secondary
-      <li>Adult literacy rate, population 15+ years, both sexes (%)
-      <li>Initial government funding of education as a percentage of GDP (%)
-      <li>Expected Years Of School
-</ul>
-
-
-<b><i>Cleaning and joining WDI data</b></i>
-
-The API function only downloads each indicator with the region, country code, and indicator vector code. To prepare and clean the data, I renamed the indicator column to a recognizable name. Later I will need to join to country data.
-```r
-# example
-names(population)[3]="population"
-```
-
-I then calculated the percentage of NULL values for each indicator to determine any that would be eliminated due to sparse data.
-```r
-# example
-print(paste0("population"))
-population.na <- as.data.frame(sum(is.na(population$population)))
-population.n <- as.data.frame(nrow(population))
-population.na$`sum(is.na(population$population))`/population.n$`nrow(population)`*100
-```
-
-This resulted in the following:
-
-<table>
-  <tr>
-    <th>Indicator</th>
-    <th>% NULL</th>
-  </tr>
-  <tr>
-    <td>population</td>
-    <td>0.61%</td>
-  </tr>
-  <tr>
-    <td>gdp.pc</td>
-    <td>9.8%</td>
-  </tr>
-  <tr>
-    <td>gdp.pc.income</td>
-    <td>12.2%</td>
-  </tr>
-  <tr>
-    <td>pop.density</td>
-    <td>1.8%</td>
-  </tr>
-  <tr>
-    <td>greenhouse.gas</td>
-    <td>31.0%</td>
-  </tr>
-  <tr>
-    <td>co2</td>
-    <td>13.4%</td>
-  </tr>
-  <tr>
-    <td>co2.pc</td>
-    <td>13.5%</td>
-  </tr>
-  <tr>
-    <td>pollution.expose</td>
-    <td>62.4%</td>
-  </tr>
-  <tr>
-    <td>birth.rate</td>
-    <td>5.2%</td>
-  </tr>
-  <tr>
-    <td>fertility.rate</td>
-    <td>7.0%</td>
-  </tr>
-  <tr>
-    <td>imports.gs</td>
-    <td>16.4%</td>
-  </tr>
-  <tr>
-    <td>exports.gs</td>
-    <td>16.4%</td>
-  </tr>
-  <tr>
-    <td>life.exp</td>
-    <td>7.1%</td>
-  </tr>
-  <tr>
-    <td>infant.mort.rate</td>
-    <td>9.5%</td>
-  </tr>
-  <tr>
-    <td>under5.mort.rate</td>
-    <td>9.5%</td>
-  </tr>
-  <tr>
-    <td>unemployment</td>
-    <td>14.8%</td>
-  </tr>
-  <tr>
-    <td>edu.lower</td>
-    <td>69.2%</td>
-  </tr>
-  <tr>
-    <td>edu.primary</td>
-    <td>52.2%</td>
-  </tr>
-  <tr>
-    <td>edu.upper</td>
-    <td>83.8%</td>
-  </tr>
-  <tr>
-    <td>literacy</td>
-    <td>74.6%</td>
-  </tr>
-  <tr>
-    <td>edu.funding</td>
-    <td>64.5%</td>
-  </tr>
-  <tr>
-    <td>edu.years</td>
-    <td>77.0%</td>
-  </tr>
-</table>
-
-I decided to exclude any indicators with more than 15% NULL values. Unfortunately, this meant I was left without any education indicators. Nonetheless, I joined the individual data frames with less than 15% NULL values to create a single data frame called <b>WDI.key</b>. I then joined this data frame to the country details in WDI in case I wanted or needed to analyze at various levels in the future. This is the resulting data frame structure.
 
 <img src="https://github.com/julieanneco/predictingHDI/blob/photos/WDI.key.png?raw=true" alt="WDI.key" width="650">
 
