@@ -1,6 +1,6 @@
-<div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>< br / >
+<div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
 
-[Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)< br / >< br / >
+[Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)
 
 * * *
 
@@ -61,9 +61,9 @@ This project utilizes both Tableau and Python. The ipynb files are uploaded to t
 <details open="open">
   <summary><b><i>Using the WDI API to Scrape Development Data</b></i></summary>
 The World Bank API (WDIAPI) has an integrated Python package that simplifies the extraction process of Development indicators and allows for download and use of the data directly in Python. Each indicator has a vector code that is used for querying and downloading functions. This file can serve as a repeatable template for merging any indicator available in the WDI API to the Scope 3 Data for potential analysis. The process maps the country codes to the country names (without requiring specific spelling) to easily pull data for any country.  
-
-The intial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
 </details>
+	  
+The intial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
 
 The WDI library is installed and loaded like any standard package. Merging requires a set of steps that can be re-used for any indicator within the API. The steps include:
 1. Get the specific indicator code. The *series.info* tool allows you to easily query a keyword to find indicators in the API
@@ -72,7 +72,7 @@ The WDI library is installed and loaded like any standard package. Merging requi
 4. Merge to the helper code dataframe to get the incorporated country
 5. Melt the dataframe so that every row is a combination of country and year with the indicator as the value
 6. Join the final indicator dataframe to the dataset on country and year
-7. 
+
 ```python
 # find total emissions codes and then use the desired code
 wb.series.info(q='greenhouse gas emissions')
@@ -125,8 +125,11 @@ Here you can how the data is pulled from and what happens once it is transposed 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
 
 <br />
+
 * * *
+
 <br />
+
 <!-- Outlier-Analysis -->
 ## 2. Outlier Analysis and Removal
 [View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
