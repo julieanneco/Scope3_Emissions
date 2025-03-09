@@ -206,6 +206,34 @@ Sample of vizualizations that validated the inconsistent accounts and were subse
 
 #### Z-Score Analysis at Primary Activity Level
 
+*Gettings the z-scores for observations within each Primary Activty and storing z-scores over 3*
+
+```python
+# Initialize list to store outlier records
+outlier_records = []
+# Process each Primary Activity
+for activity in outlier_df['Primary activity'].unique():
+    # Get data for this activity
+    activity_data = outlier_df[outlier_df['Primary activity'] == activity]
+    # Calculate z-scores and std dev for this activity
+    z_scores = stats.zscore(activity_data['Scope_3_emissions_amount'])
+    std_dev = activity_data['Scope_3_emissions_amount'].std()
+    # Find outliers (z-score >= 3)
+    outlier_mask = abs(z_scores) >= 3
+    # Get outlier records
+    outliers = activity_data[outlier_mask].copy()
+    outliers['z_score'] = z_scores[outlier_mask]
+    outliers['std_dev'] = std_dev
+    # Add to records list
+    outlier_records.append(outliers[['account_id', 'account_name', 'Primary activity', 
+                                   'Scope_3_emissions_amount', 'Year', 'z_score', 'std_dev']])
+# Combine all outliers into one dataframe
+outliers = pd.concat(outlier_records)
+# Sort by absolute z-score (highest to lowest)
+outliers = outliers.sort_values(by='z_score', key=abs, ascending=False)
+# Reset index
+outliers = outliers.reset_index(drop=True)
+```
 
 #### Custom IQR Binning to Reduce Percentile Volume
 
