@@ -109,7 +109,7 @@ wb.series.info(q='greenhouse gas emissions')
 
 # get total greenhouse gas emissions for all incorporated countries
 country_total_ghg = wb.data.DataFrame(
-'EN.GHG.ALL.LU.MT.CE.AR5',      # World Bank Indicator Code (using "Total greenhouse gas emissions including LULUCF (Mt CO2e)")
+'EN.GHG.ALL.LU.MT.CE.AR5',      # World Bank Indicator Code
 # country codes inside brackets
 ['GBR','ESP','USA','ITA','ZAF','IND','FRA','CHE','NLD','JPN','BRA','FIN'
 ,'CAN','NZL','TUR','DEU','IRL','AUS','AUT','LUX','NOR','SWE','PRT'
