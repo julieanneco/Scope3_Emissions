@@ -93,7 +93,7 @@ Highly skewed data with a very non-normal distribution can present a range of ch
 The World Bank API (WDIAPI) has an integrated Python package that simplifies the extraction process of Development indicators and allows for download and use of the data directly in Python. Each indicator has a vector code that is used for querying and downloading functions. This file can serve as a repeatable template for merging any indicator available in the WDI API to the Scope 3 Data for potential analysis. The process maps the country codes to the country names (without requiring specific spelling) to easily pull data for any country.  
 </details>
 	  
-The intial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
+The initial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
 
 The WDI library is installed and loaded like any standard package. Merging requires a set of steps that can be re-used for any indicator within the API. The steps include:
 1. Get the specific indicator code. The *series.info* tool allows you to easily query a keyword to find indicators in the API
