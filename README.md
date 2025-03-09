@@ -11,7 +11,7 @@
     <li><a href="#Data-Engineering">Data Engineering: Merging World Bank Data</a>
     <li><a href="#Outlier-Analysis">Outlier Analysis and Removal</a>
           <ul>
-          <li><a href="#variation">Extreme Variation Anlaysis (Company Level)</a>
+          <li><a href="#variation">Extreme Variation Analysis (Company Level)</a>
           <li><a href="#zscore">Z-score Analysis (Primary Activity Level)</a>
           <li><a href="#iqr">Custom IQR Binning to Reduce Percentile Distribtion/Volume</a>
           <li><a href="#validation">Validating Changes in Standard Deviation, Skew, and Kurtosis</a>
@@ -32,7 +32,6 @@
           <li><a href="#performance">Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)</a>
           <li><a href="#performance">Comparing Models</a>
 	  </ul>
-    <li><a href="#Analysis-Tableau">Interactive Reseach Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
     <li><a href="#acknowledgements">Acknowledgements</a>
   </ol>
@@ -608,12 +607,6 @@ The MAE is generally consistent across 3 cross validation folds.
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_1.png" alt="compare.key" width="800">
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/model_compare_2.png" alt="compare.key" width="500">
-
-
-<!-- Analysis-Tableau -->
-## Interactive Research Analysis in Tableau
-
-<div class='tableauPlaceholder' id='viz1741234238142' style='position: relative'><noscript><a href='#'><img alt='Story 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EmissionsinBusiness&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Em&#47;EmissionsinBusiness&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
 
 
 <!-- Conclusion -->
