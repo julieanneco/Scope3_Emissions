@@ -1,4 +1,4 @@
-# Predicting Scope 3 Greenhouse Gas Emissions in Global Business
+# Scope 3 Greenhouse Gas Emissions in Global Business
 
 <br />
 
@@ -8,14 +8,13 @@
 <b>Table of Contents</b>
   <ol>
     <li><a href="#Project-Overview">Project Overview</a>
-    <li><a href="#EDA-Tableau">EDA in Tableau</a>
     <li><a href="#Data-Engineering">Data Engineering: Merging World Bank Data</a>
     <li><a href="#Outlier-Analysis">Outlier Analysis and Removal</a>
     <li><a href="#Skew-Transformation">Skew Transformation</a>
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
-          <li><a href="#xgboost">XGBoost</a>
           <li><a href="#random-forest">Random Forest</a>
+          <li><a href="#xgboost">XGBoost</a>
           </ul>
     <li><a href="#Analysis-Tableau">Interactive Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
@@ -42,30 +41,14 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 
 <br />
 
-<!-- EDA-Tableau -->
-## EDA in Tableau
-
-Project summary here
-
-The entire project is coded in R and consists of 4 key steps (each in separate R Markdown files):
-<ol>
-  <li><b>Data Engineering:</b> Scraping, merging, cleaning, and transforming data. </li>
-  <li><b>Exploratory Data Analysis:</b> Analyzing variables for correlation and regression to build final data frame(s). </li>
-  <li><b>Prediction with Machine Learning:</b> Using the final variables to build 2 random forest models (regression and classification).</li>
-  <li><b><i>Bonus:</b> Using true indicators to predict HDI.</i></li>
-	
-</ol>
-
-<br />
-
 <!-- Data Engineering -->
 ## Data Engineering: Merging World Bank Data
 
-[View the Python Markdown file for this step](url)
+[View the Python Markdown file for this step]([url](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Merging%20World%20Bank%20Data.ipynb))
 
 <details open="open">
   <summary><b><i>Using the WDI API to scrape indicator data</b></i></summary>
-There are two methods for accessing WDI data. The first is to build a report using the World Bank’s web-based graphical user interface (GUI) and downloading the query results. The second method uses an Application Programming Interface (API). The API has been integrated into an R package that simplifies the extraction process and allows for download and use of the data directly in R. Each indicator has a vector code that is used for querying and downloading functions within R. There are several ways to find the vector codes for specific indicators or indicators containing a keyword. In R, the WDIsearch() function will population any indicator in a keyword search. There is also a [metadata glossary](https://databank.worldbank.org/metadataglossary/World-Development-Indicators/series) with detailed information and vector codes for all indicators. 
+The World Bank API (WDIAPI) has an integrated Python package that simplifies the extraction process of Development indicators and allows for download and use of the data directly in Python. Each indicator has a vector code that is used for querying and downloading functions. This 
 </details>
 
 The WDI library is installed and loaded like any standard package:
