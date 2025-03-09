@@ -147,6 +147,8 @@ original_kurtosis = outlier_df['Scope_3_emissions_amount'].kurtosis()
 Skew: 325.8187947316704
 
 Kurtosis: 116921.06539086264
+
+
 <br />
 *Looking at observation volume by year*
 
@@ -237,7 +239,7 @@ outliers = outliers.reset_index(drop=True)
 
 *Vizualizing Outliers*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_primary activity.png.png" alt="outliersbyprimaryactivity.key" width="400">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_primary activity.png" alt="outliersbyprimaryactivity.key" width="400">
 
 
 #### Custom IQR Binning to Reduce Percentile Volume
