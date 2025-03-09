@@ -25,7 +25,6 @@
 
 <br />
 <hr>
-<br />
 
 <!-- Project Overview -->
 ## Project Overview
