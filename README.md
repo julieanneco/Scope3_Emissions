@@ -142,9 +142,9 @@ melted_ghg = country_total_ghg.melt(
     id_vars=['incorporated_country'],      # Keep 'incorporated_country' as identifier variable
     value_vars=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'],
     var_name='Year',                       
-    value_name='country_total_ghg'        
-)
+    value_name='country_total_ghg')
 ```
+
 Here you can see how the data is pulled from the API and what happens once it is transposed to easily merge with the Scope 3 Data.
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="580"> &rarr; <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
@@ -187,7 +187,9 @@ Kurtosis: 116921.06539086264
 
 *Looking at observation volume by year*
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="500">
+
+
 <!-- variation -->
 #### Extreme Variation Anlaysis (Company Level)
 
@@ -201,16 +203,12 @@ def find_extreme_variations(outlier_df, value_column, year_column='Year',
                           z_score_threshold=2):
     # Calculate variation metrics for each account within a primary activity
     variation_stats = (outlier_df.groupby([activity_column, account_column])
-                      .agg({
-                          value_column: ['std', 'mean', 'min', 'max', 'count'],
-                          year_column: list
-                      })
-                      .reset_index())
+                      .agg({value_column: ['std', 'mean', 'min', 'max', 'count'], year_column: list
+                      }).reset_index())
     # Flatten column names
     variation_stats.columns = [
         f"{col[0]}_{col[1]}" if col[1] else col[0] 
-        for col in variation_stats.columns
-    ]
+        for col in variation_stats.columns]
     # Calculate coefficient of variation (CV)
     variation_stats['cv'] = (variation_stats[f'{value_column}_std'] / 
                            variation_stats[f'{value_column}_mean'].abs())
@@ -229,12 +227,10 @@ def find_extreme_variations(outlier_df, value_column, year_column='Year',
     # Sort and format results
     extreme_accounts = extreme_accounts.sort_values(
         ['cv_zscore'], 
-        ascending=False
-    )
+        ascending=False)
     # Add year range information
     extreme_accounts['year_range'] = extreme_accounts[f'{year_column}_list'].apply(
-        lambda x: f"{min(x)}-{max(x)}"
-    )
+        lambda x: f"{min(x)}-{max(x)}")
     return extreme_accounts
 ```
 Sample of vizualizations that validated the inconsistent accounts and were subsequently removed from the data:
