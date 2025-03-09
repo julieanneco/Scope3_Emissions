@@ -12,7 +12,7 @@
     <li><a href="#Outlier-Analysis">Outlier Analysis and Removal</a>
           <ul>
           <li><a href="#variation">Extreme Variation Anlaysis (Company Level)</a>
-          <li><a href="#zscore">Z-score Analysis at a (Primary Activity Level)</a>
+          <li><a href="#zscore">Z-score Analysis (Primary Activity Level)</a>
           <li><a href="#iqr">Custom IQR Binning to Reduce Percentile Distribtion/Volume</a>
           <li><a href="#validation">Validating Changes in Standard Deviation, Skew, and Kurtosis</a>
 	  </ul>
@@ -406,6 +406,13 @@ While all features should be transformed within the Machine Learning pipeline, t
 
 <!-- correlation -->
 ## Correlation Analysis
+
+Correlation of Target Variable (y) to Features (X)
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
+
+Correlation of Features
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/quantile.png" alt="Quantile.key" width="820">
+
 
 
 <!-- xgboost -->
