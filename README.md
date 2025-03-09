@@ -1,7 +1,6 @@
-* * *
-<div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
+<div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>< br / >
 
-[Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)
+[Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)< br / >< br / >
 
 * * *
 
@@ -42,13 +41,13 @@ This data research project aims to provide a preliminary analysis of Scope 3 emi
   <li><b>Skew Transformation:</b> Utilizing transformation techniques to examine and handle extreme skew. </li>  
   <li><b>Prediction with Machine Learning:</b> Analyzing variables for correlation and using analyzed features to build preliminary machine learning models.</li>
 </ol>
-This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant. and the associated  project is coded in R and consists of 4 key steps (each in separate R Markdown files):
 
-<br />
+This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant.<br />
 
-<br />
+
 * * *
-<br />
+
+
 <!-- Data Engineering -->
 ## 1. Data Engineering
 > [!NOTE]
