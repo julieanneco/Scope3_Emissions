@@ -46,6 +46,14 @@ As the global focus on sustainability intensifies, organizations are increasingl
 
 This data research project aims to provide a preliminary analysis of Scope 3 emissions within businesses, in order to answer specific research questions and build and improve upon various machine learning models to better predict and forecast future Scope 3 Emissions. 
 
+This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant.<br />
+
+### Data Overview
+
+
+### Data Challenges
+
+
 **The project consists of various steps and processes to achieve a final prelimiary framework for this research effort:**
 <ol>
   <li><b>Data Engineering:</b> Scraping, merging, cleaning, and normalizing data. </li>
@@ -54,7 +62,6 @@ This data research project aims to provide a preliminary analysis of Scope 3 emi
   <li><b>Prediction with Machine Learning:</b> Analyzing variables for correlation and using analyzed features to build preliminary machine learning models.</li>
 </ol>
 
-This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant.<br />
 
 * * *
 
