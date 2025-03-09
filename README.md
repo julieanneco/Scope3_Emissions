@@ -42,19 +42,28 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 <br />
 
 <!-- Data Engineering -->
-## Data Engineering: Merging World Bank Data
+## Data Engineering
 
-[View the Python Markdown file for this step]([url](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Merging%20World%20Bank%20Data.ipynb))
+Before merging, I have done some preliminary data cleaning and normalizing on the original data:
+- Normalize all country names
+- Map and create regions
+
+### Merging World Bank Data
+[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Merging%20World%20Bank%20Data.ipynb)
 
 <details open="open">
-  <summary><b><i>Using the WDI API to scrape indicator data</b></i></summary>
-The World Bank API (WDIAPI) has an integrated Python package that simplifies the extraction process of Development indicators and allows for download and use of the data directly in Python. Each indicator has a vector code that is used for querying and downloading functions. This 
+  <summary><b><i>Using the WDI API to Scrape Development Data</b></i></summary>
+The World Bank API (WDIAPI) has an integrated Python package that simplifies the extraction process of Development indicators and allows for download and use of the data directly in Python. Each indicator has a vector code that is used for querying and downloading functions. This file can serve as a repeatable template for merging any indicator available in the WDI API to the Scope 3 Data for potential analysis. The process maps the country codes to the country names (without requiring specific spelling) to easily pull data for any country.  
+
+The intial merge file includes the indicators: Country GDP, Population, and Total Greenhouse Gas Emissions from 2013 to 2023 to coincide with the Scope 3 data.
 </details>
 
-The WDI library is installed and loaded like any standard package:
-```r
-install.packages("WDI")
-library(WDI)
+The WDI library is installed and loaded like any standard package. Below is the basic code for grabbing data and merging:
+```python
+# find total emissions codes and then use the desired code
+wb.series.info(q='greenhouse gas emissions')
+
+
 ```
 
 The WDI function to access and download data:
