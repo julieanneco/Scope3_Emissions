@@ -2,6 +2,8 @@
 
 [Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)
 
+
+
 * * *
 
 <img align="right" src="https://github.com/julieanneco/GHG_Emissions/blob/Photos/project_image.png?raw=true" alt="project image" width="500">
