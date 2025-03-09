@@ -45,8 +45,8 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 ## Data Engineering
 > [!NOTE]
 > Before merging, I have done some preliminary data cleaning and normalizing on the original data:
-- Normalize all country names
-- Map and create regions
+> - Normalize all country names
+> - Map and create regions
 
 ### Merging World Bank Data
 [View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Merging%20World%20Bank%20Data.ipynb)
