@@ -251,7 +251,7 @@ outliers = outliers.reset_index(drop=True)
 
 #### Custom IQR Binning to Reduce Percentile Volume
 
-*Creating a Scatterplot to better understand volume and distributuion within custom percentiles*
+*Creating a Scatterplot to better understand volume and distribution within custom percentiles*
 
 ```
 # calculate custom percentiles
@@ -304,6 +304,7 @@ fig.show()
 ```
 
 **Percentile Results Before**
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_percentile_before.png" alt="outliers_percentile_before.key" width="800">
 
 *Assessing Rows in the 99th percentile*
@@ -325,16 +326,15 @@ Percentage of total accounts: 9.7%
 </td></tr></table>
 
 **Percentile Results After Removing Values in the 99th Percentile**
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_percentile_after.png" alt="outliers_percentile_before.key" width="800">
-
-
-
 
 
 #### Validating Changes in Standard Deviation, Skew, and Kurtosis
 *Comparing final data post-outlier removal*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outlier_compare.png" alt="outlier_compare.key" width="300">
+
 
 * * *
 
@@ -356,7 +356,19 @@ Percentage of total accounts: 9.7%
 
 While all features should be transformed within the Machine Learning pipeline, this step shows the analysis of Market Cap transformation using both Box Cox and Quantile transformation for use in future analysis and research. 
 
-**Final Distribution Results Post-Transformation**
+*Quantile Transformer*
+  - Best for non-normal distributions where data is heavily skewed
+  - Robust to outliers and reduces the impact of extreme values
+  - Uses quantiles information and maps data to either a uniform or normal distribution
+  - Disadvantge: loses absolute value relationships
+
+*Box Cox*
+ - Makes non-normal data more normal-like, reduces skewness, stabilizes variance
+ - Helps meet assumptions for many statistical tests by assuming linear model assumptions
+ - Disadvantage: Only works with positive values and cannot handle zeros
+   
+
+**Distributions Before and After Skew Transformation**
 Box Cox
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/transform_boxcox.png" alt="BoxCox.key" width="320">
 
