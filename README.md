@@ -86,7 +86,9 @@ Highly skewed data with a very non-normal distribution can present a range of ch
 > - Map and create regions
 
 ### Merging World Bank Data
-[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Engineering%20-%20Merging%20World%20Bank%20Data.ipynb)
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Engineering%20-%20Merging%20World%20Bank%20Data.ipynb)
+
+*Ctrl+Click to open in new tab*
 
 <details open="open">
   <summary><b><i>Using the WDI API to Scrape Development Data</b></i></summary>
@@ -153,7 +155,9 @@ Here you can see how the data is pulled from the API and what happens once it is
 
 <!-- Outlier-Analysis -->
 ## Outlier Analysis and Removal
-[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
+
+*Ctrl+Click to open in new tab*
 
 Due to the highly skewed nature of the Scope 3 Emissions data, where extreme variation, distribution, and outliers exist, outlier analysis and removal proved to be a complex and cruical step. While this process requires far more analysis, validation, and transformation, this preliminary outlier removal offers the beginning steps to this deep analytical process.
 
@@ -380,6 +384,8 @@ Percentage of total accounts: 9.7%
 
 [View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/3%20-%20Skew%20Transformation.ipynb)
 
+*Ctrl+Click to open in new tab*
+
 **Analyzing Skew**
 
 *Data has a positive/right skew when*:
@@ -422,6 +428,8 @@ While all features should be transformed within the Machine Learning pipeline, t
 # 4. Machine Learning Models
 
 [View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/4%20-%20Machine%20Learning.ipynb)
+
+*Ctrl+Click to open in new tab*
 
 
 <!-- correlation -->
