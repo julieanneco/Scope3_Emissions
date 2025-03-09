@@ -87,8 +87,7 @@ Highly skewed data with a very non-normal distribution can present a range of ch
 
 ### Merging World Bank Data
 [View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Engineering%20-%20Merging%20World%20Bank%20Data.ipynb)
-
-*Ctrl+Click to open in new tab*
+<sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
 <details open="open">
   <summary><b><i>Using the WDI API to Scrape Development Data</b></i></summary>
