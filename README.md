@@ -17,8 +17,10 @@
           <li><a href="#validation">Validating Changes in Standard Deviation, Skew, and Kurtosis</a>
 	  </ul>
     <li><a href="#Skew-Transformation">Skew Transformation</a>
-	          <li><a href="#boxcox">Box Cox Transformation</a>
-	          <li><a href="#quantile">Quantile Transformation</a>
+	  <ul>
+	  <li><a href="#boxcox">Box Cox Transformation</a>
+	  <li><a href="#quantile">Quantile Transformation</a>
+	  </li>ul>
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
           <li><a href="#corelation">Correlation Analysis</a>
