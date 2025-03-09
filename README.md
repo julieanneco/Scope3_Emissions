@@ -183,6 +183,8 @@ Kurtosis: 116921.06539086264
 
 
 <br />
+
+
 *Looking at observation volume by year*
 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
