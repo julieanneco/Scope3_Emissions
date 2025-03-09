@@ -119,7 +119,7 @@ melted_ghg = country_total_ghg.melt(
 ```
 Here you can how the data is pulled from and what happens once it is transposed to easily merge with the Scope 3 Data.
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="580"><img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="580"> --->  <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
 
 * * *
 
