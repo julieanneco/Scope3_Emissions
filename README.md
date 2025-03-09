@@ -61,11 +61,11 @@ Initial analysis of the data shows significant peaks and valley when looking at 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/EDA.png" alt="EDA.key" width="700">
 
 Highly skewed data with a very non-normal distribution can present a range of challenges, especially in statistical modeling and analysis. Some key difficulties include:
-
-1. Statistical Analysis - Many standard statistical tests and models assume that the data follows a normal distribution or that the residuals of the model are normally distributed. When data is highly skewed or has a non-normal distribution, these assumptions are violated, which can lead to unrealiable coefficients/parameter estimates, increased Type I and Type II errors with skewed distribution of residuals.
+1. Statistical Analysis - Many standard statistical tests and models assume that the data follows a normal distribution or that the residuals of the model are normally distributed. When data is highly skewed or has a non-normal distribution, these assumptions are violated, which can lead to unreliable coefficients/parameter estimates, increased Type I and Type II errors with skewed distribution of residuals.
 2. Impact to Model Performance - Highly skewed data can lead to prediction bias (prioritization of the majority class/values) as well as reduction in model interpretability (overfitting)
-3. Difficulty in transformations, espcially given the range of extreme negative values to extreme positive values.
+3. Difficulty in transformations, especially given the range of extreme negative values to extreme positive values.
 4. Extreme outliers impact a model's ability to generalize and can lead to heteroscedasticity where the variance of errors or residuals is not constant across different levels of the independent variable(s), reducing confidence in standard errors.
+
 
 **The project consists of various steps and processes to achieve a final prelimiary framework for this research effort:**
 <ol>
