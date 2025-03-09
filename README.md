@@ -44,9 +44,7 @@ This data research project aims to provide a preliminary analysis of Scope 3 emi
 
 This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant.<br />
 
-
 * * *
-
 
 <!-- Data Engineering -->
 ## 1. Data Engineering
@@ -124,14 +122,10 @@ Here you can how the data is pulled from and what happens once it is transposed 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="620">
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
 
-<br />
-
 * * *
 
-<br />
-
 <!-- Outlier-Analysis -->
-## 2. Outlier Analysis and Removal
+## Outlier Analysis and Removal
 [View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
 
 Due to the highly skewed nature of the Scope 3 Emissions data, where extreme variation, distribution, and outliers exist, outlier analysis and removal proved to be a complex and cruical step. While this process requires far more analysis, validation, and transformation, this preliminary outlier removal offers the beginning steps to this deep analytical process.
@@ -156,9 +150,8 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 ### Custom IQR Binning
 
 
-<br />
 * * *
-<br />
+
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
