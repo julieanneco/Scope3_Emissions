@@ -1,12 +1,10 @@
 <div class='tableauPlaceholder' id='viz1741488402680' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
-
-<br />
 <br />
 [Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)
 <br />
 <br />
+* * *
 <br />
-
 <img align="right" src="https://github.com/julieanneco/GHG_Emissions/blob/Photos/project_image.png?raw=true" alt="project image" width="500">
 
 <!-- Table of Contents -->
@@ -46,6 +44,9 @@ The entire project is coded in R and consists of 4 key steps (each in separate R
 
 <br />
 
+<br />
+* * *
+<br />
 <!-- Data Engineering -->
 ## 1. Data Engineering
 > [!NOTE]
@@ -122,7 +123,9 @@ Here you can how the data is pulled from and what happens once it is transposed 
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI1.png" alt="WDI1.key" width="620">
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/WDI2.png" alt="WDI1.key" width="320">
 
-
+<br />
+* * *
+<br />
 <!-- Outlier-Analysis -->
 ## 2. Outlier Analysis and Removal
 [View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/2%20-%20Outlier%20Analysis.ipynb)
@@ -149,7 +152,9 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 ### Custom IQR Binning
 
 
-
+<br />
+* * *
+<br />
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
@@ -241,6 +246,10 @@ F-statistic: 2.279e+04 on 1 and 4676 DF,  p-value: < 2.2e-16
 <br />
 <br />
 
+
+<br />
+* * *
+<br />
 <!-- Machine-Learning -->
 # 4. Machine Learning Models
 
