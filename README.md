@@ -52,63 +52,20 @@ This project utilizes both Tableau and Python. The ipynb files are uploaded to t
 
 The inital data set includes 181,326 rows with the following unique columns and statistics:
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/summary.png" alt="summarydata.key" width="850">
-
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/summary.png" alt="summarydata.key" width="800">
 
 #### *Data Challenges*
 
-Initial analysis of the data shows significant inconsistency when looking at the Average Scope 3 Emissions amount for each year.he dataset shows significant peaks and valleys, which indicates a high probability of discrepancy and inconsistency. This chart represents the entirety of dataset post-outlier removal on 3 variables: Company, emission type, and year.
+Initial analysis of the data shows significant peaks and valley when looking at the Average Scope 3 Emissions amount year over year (Yoy). The dataset indicates a high probability of discrepancy, inconsistency, extreme outliers, and skew. The lack of uniform/linear distributuion suggests unreliable data that creates consumption challenges for analysis and machine learning.
 
-Despite outlier removal, tThe lack of uniformity may result in unreliable data for consumption in an analysis or machine learning model.
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/EDA.png" alt="EDA.key" width="500">
 
-Highly skewed data with a very non-normal distribution can present a range of challenges, especially in statistical modeling and analysis. Here are some of the primary difficulties:
+Highly skewed data with a very non-normal distribution can present a range of challenges, especially in statistical modeling and analysis. Some key difficulties include:
 
-1. Violation of Assumptions for Parametric Tests
-Many standard statistical tests and models (such as linear regression, ANOVA, or t-tests) assume that the data follows a normal distribution or that the residuals of the model are normally distributed. When data is highly skewed or has a non-normal distribution, these assumptions are violated, which can lead to:
-
-Inaccurate parameter estimates: The model’s coefficients might not be reliable.
-Increased Type I or Type II errors: There is a higher chance of incorrectly rejecting or failing to reject a hypothesis due to the misfit between the model and data distribution.
-2. Skewed Distribution of Errors
-If the residuals from a model are not normally distributed (e.g., if they are skewed), the results of hypothesis tests and confidence intervals may not be valid. For example, prediction intervals might be too narrow or too wide, leading to poor forecasting performance.
-
-3. Impact on Model Performance
-In predictive modeling, especially in machine learning, highly skewed data can:
-
-Bias predictions: The model may heavily prioritize predicting the majority class or dominant values, while underperforming for less frequent, but important, outcomes.
-Reduce model interpretability: When the data is heavily skewed, the model may overfit to certain patterns and miss broader generalizations.
-Model choice and complexity: Some models (like linear regression) might not work well with skewed data, while others (like decision trees) may be more adaptable. But even these models can overfit to skewed patterns, leading to poorer generalization to new data.
-4. Transformation Issues
-Transformations (e.g., log transformation, square root transformation) are often used to mitigate skewness and make data more normally distributed. However, transforming data is not always straightforward:
-
-Negative values: Many common transformations (like log transformation) can't handle negative values, requiring data preprocessing or shifting the data.
-Interpretability: The transformation can complicate the interpretation of results. For example, applying a log transformation to income data may result in coefficients that are harder to explain in real-world terms.
-5. Outliers and Extreme Values
-Highly skewed data often contains extreme outliers that can disproportionately influence summary statistics (such as the mean or variance). These outliers can:
-
-Distort statistical metrics: Measures like the mean are especially sensitive to outliers, leading to misleading interpretations of central tendency.
-Impact the model’s ability to generalize: Outliers can result in overfitting or skew predictions.
-6. Non-constant Variance (Heteroscedasticity)
-Skewed data may result in heteroscedasticity, where the variance of errors or residuals is not constant across different levels of the independent variable(s). This can cause problems for models that assume homoscedasticity, leading to:
-
-Inaccurate standard errors: Standard errors of the model coefficients might be biased, affecting the reliability of hypothesis tests and confidence intervals.
-Inefficiency of estimates: Models might not be as efficient or accurate in their estimation of relationships between variables.
-7. Difficulty in Statistical Inference
-Statistical inference methods such as confidence intervals, hypothesis tests, and p-values are less reliable when data is highly skewed. As a result:
-
-Conventional tests may lose power: Non-parametric methods or bootstrapping may be needed to ensure robust statistical inference in the presence of skewed data.
-Bootstrapping or resampling techniques: These are sometimes used as alternatives, but they can be computationally expensive and might still struggle with extreme skewness.
-8. Issues with Model Calibration
-In many machine learning algorithms, a skewed distribution of data can affect the calibration of predicted probabilities, especially when dealing with binary classification or imbalanced datasets. For example, in a highly skewed dataset with a rare event (like fraud detection), most models might predict the majority class well but fail to predict the minority class accurately. This leads to:
-
-Poor recall of the minority class.
-Skewed precision-recall metrics (e.g., high accuracy but poor F1-score).
-Potential Solutions:
-Use Non-Parametric Methods: Methods like decision trees, random forests, and support vector machines can be more flexible in handling non-normal data.
-Data Transformation: Try to transform the data (e.g., log, Box-Cox transformation) to reduce skewness. However, this requires caution and understanding of the data’s nature.
-Use Robust Statistics: Robust regression techniques or non-parametric tests that don’t assume normality can be useful.
-Resampling Techniques: Methods like bootstrapping or cross-validation can help validate models in the presence of skewed data.
-Addressing Imbalances: In cases of imbalanced data, techniques like SMOTE (Synthetic Minority Over-sampling Technique) or cost-sensitive learning can help improve model performance.
-In conclusion, dealing with highly skewed data with a non-normal distribution requires careful handling in both data preprocessing and modeling phases. Understanding the source of skewness and selecting the right approach for analysis is key to obtaining valid results.
+1. Statistical Analysis - Many standard statistical tests and models assume that the data follows a normal distribution or that the residuals of the model are normally distributed. When data is highly skewed or has a non-normal distribution, these assumptions are violated, which can lead to unrealiable coefficients/parameter estimates, increased Type I and Type II errors with skewed distribution of residuals.
+2. Impact to Model Performance - Highly skewed data can lead to prediction bias (prioritization of the majority class/values) as well as reduction in model interpretability (overfitting)
+3. Difficulty in transformations, espcially given the range of extreme negative values to extreme positive values.
+4. Extreme outliers impact a model's ability to generalize and can lead to heteroscedasticity where the variance of errors or residuals is not constant across different levels of the independent variable(s), reducing confidence in standard errors.
 
 **The project consists of various steps and processes to achieve a final prelimiary framework for this research effort:**
 <ol>
@@ -493,7 +450,7 @@ Most Machine Learning models require data encoding for categorical values. There
 
 *2. One hot encoding*
 
-Label encoding assigns a numerical value to every value in a categorical column. This method essentially converts a unique string into a unique number. This route can be problematic to the algorithm if the model assigns value to the numbers beyond categorical limitation. For instance, primary activity has over 50 values. It's safe to assume the model might interpret a value of 1 differently than a value of 50. One hot encoding converts every categorical value in each column to a binary value. For machine learning, this is the more ideal option, as it allows every category to be represented by its own binary feature. This prevents the model from assuming an ordinal relationship or ranking  between categories, which can cause inaccurate predictions. Because this dataset includes categorical columns wih many categories, one hot encoding will result in hundreds of features in order to capture every possible categorical value. This will likey result in overly high dimensionality and accumulated feature noise with very little correlation for reliable predictions. To decide which columns to keep for training, I one hot encoded Primary sector and Primary activity. I chose one hot encoded given the limitations of label encoding for categories with numerous values.
+Label encoding assigns a numerical value to every value in a categorical column. This method essentially converts a unique string into a unique number. This route can be problematic to the algorithm if the model assigns value to the numbers beyond categorical limitation. For instance, primary activity has over 200 values. It's safe to assume the model might interpret a value of 1 differently than a value of 200. One hot encoding converts every categorical value in each column to a binary value. For machine learning, this is the more ideal option, as it allows every category to be represented by its own binary feature. This prevents the model from assuming an ordinal relationship or ranking  between categories, which can cause inaccurate predictions. Because this dataset includes categorical columns wih many categories, one hot encoding will result in hundreds of features in order to capture every possible categorical value. This will likey result in overly high dimensionality and accumulated feature noise with very little correlation for reliable predictions. To decide which columns to keep for training, I one hot encoded Primary sector and Primary activity. I chose one hot encoded given the limitations of label encoding for categories with numerous values.
 
 ```python
 # One-hot encode Primary Sector
