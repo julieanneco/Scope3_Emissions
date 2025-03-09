@@ -127,7 +127,7 @@ In conclusion, dealing with highly skewed data with a non-normal distribution re
 > - Map and create regions
 
 ### Merging World Bank Data
-[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Merging%20World%20Bank%20Data.ipynb)
+[View the Python Markdown file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/1%20-%20Engineering%20-%20Merging%20World%20Bank%20Data.ipynb)
 
 <details open="open">
   <summary><b><i>Using the WDI API to Scrape Development Data</b></i></summary>
