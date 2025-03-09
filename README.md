@@ -144,19 +144,19 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 ```python
 original_skew = outlier_df['Scope_3_emissions_amount'].skew()
 original_kurtosis = outlier_df['Scope_3_emissions_amount'].kurtosis()
-print("Skew: ") 
-print(original_skew)
-print("Kurtosis: ") 
-print(original_kurtosis)
 ```
 Skew: 325.8187947316704
+
 Kurtosis: 116921.06539086264
 
 *Looking at observation volume by year*
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
 
 #### Extreme Variation Analysis at a Company Level
+
 *Function to Find Accounts with Extreme Variation (inconsistent observations or extreme peaks/valleys from year to year*
+
 ```python
 def find_extreme_variations(outlier_df, value_column, year_column='Year', 
                           activity_column='Primary activity', 
@@ -200,7 +200,9 @@ def find_extreme_variations(outlier_df, value_column, year_column='Year',
     )
     return extreme_accounts
 ```
-Sample vizualizations verified these inconsistent accounts and were removed from the data.
+Sample of vizualizations that validated the inconsistent accounts and were subsequently removed from the data:
+
+
 <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance1.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance2.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance3.png" alt="YoY.key" width="200">
 
 #### Z-Score Analysis at Primary Activity Level
