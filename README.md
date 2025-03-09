@@ -237,9 +237,13 @@ outliers = outliers.sort_values(by='z_score', key=abs, ascending=False)
 outliers = outliers.reset_index(drop=True)
 ```
 
-*Vizualizing Outliers*
+*Vizualizing Outliers: Outliers Year over Year*
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_yoy,png" alt="outliersyoy.key" width="400">
 
-<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/outliers_primary activity.png" alt="outliersbyprimaryactivity.key" width="400">
+
+*Vizualizing Outliers: A sample of z-scores by Primary Activity*
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/zscore_primary_activity.png" alt="zscoresbyprimaryactivity.key" width="400">
 
 
 #### Custom IQR Binning to Reduce Percentile Volume
