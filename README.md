@@ -50,23 +50,14 @@ This project utilizes both Tableau and Python. The ipynb files are uploaded to t
 
 #### *Data Overview*
 
-The inital data set includes 181,326 rows with the foillowing unique columns:
-['account_id', 'account_name', 'incorporated_country', 'ticker',
-       'Evaluation_status', 'Scope_3_emissions_type',
-       'Scope_3_emissions_amount', 'Year', 'Market_Cap',
-       'Employee_Count', 'ebitda', 'Revenue', 'grossProfit', 'netIncome',
-       'reportedCurrency', 'cashAndCashEquivalents', 'shortTermInvestments',
-       'longTermInvestments', 'totalAssets', 'totalLiabilities',
-       'totalInvestments', 'totalDebt', 'totalEquity', 'Primary activity',
-       'Primary sector', 'Primary industry', 'Primary questionnaire sector',
-       'Third_party_verification', 'Revenue_USD', 'Market_Cap_USD',
-       'ebitda_USD', 'grossProfit_USD', 'netIncome_USD',
-       'cashAndCashEquivalents_USD', 'shortTermInvestments_USD',
-       'longTermInvestments_USD', 'totalAssets_USD', 'totalLiabilities_USD',
-       'totalInvestments_USD', 'totalDebt_USD', 'totalEquity_USD'],
-
+The inital data set includes 181,326 rows with the following unique columns and statistics:
+account_id', 'account_name', 'incorporated_country', 'ticker', 'Evaluation_status', 'Scope_3_emissions_type', 'Scope_3_emissions_amount', 'Year', 'Market_Cap', 'Employee_Count', 'ebitda', 'Revenue', grossProfit', 'netIncome', 'reportedCurrency', 'cashAndCashEquivalents', 'shortTermInvestments', 'longTermInvestments', 'totalAssets', 'totalLiabilities', 'totalInvestments', 'totalDebt', totalEquity', Primary activity', Primary sector', 'Primary industry', 'Primary questionnaire sector', 'Third_party_verification', 'Revenue_USD', 'Market_Cap_USD', 'ebitda_USD', 'grossProfit_USD', 'netIncome_USD',    'cashAndCashEquivalents_USD', 'shortTermInvestments_USD', 'longTermInvestments_USD', 'totalAssets_USD', 'totalLiabilities_USD', 'totalInvestments_USD', 'totalDebt_USD', 'totalEquity_USD'
 
 #### *Data Challenges*
+
+Initial analysis of the data shows significant inconsistency when looking at the Average Scope 3 Emissions amount for each year.he dataset shows significant peaks and valleys, which indicates a high probability of discrepancy and inconsistency. This chart represents the entirety of dataset post-outlier removal on 3 variables: Company, emission type, and year.
+
+Despite outlier removal, tThe lack of uniformity may result in unreliable data for consumption in an analysis or machine learning model.
 
 Highly skewed data with a very non-normal distribution can present a range of challenges, especially in statistical modeling and analysis. Here are some of the primary difficulties:
 
