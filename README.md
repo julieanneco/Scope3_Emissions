@@ -4,8 +4,6 @@
 
 * * *
 
-<img align="right" src="https://github.com/julieanneco/GHG_Emissions/blob/Photos/project_image.png?raw=true" alt="project image" width="500">
-
 <!-- Table of Contents -->
 <b>Table of Contents</b>
   <ol>
@@ -19,14 +17,14 @@
           <li><a href="#validation">Validating Changes in Standard Deviation, Skew, and Kurtosis</a>
 	  </ul>
     <li><a href="#Skew-Transformation">Skew Transformation</a>
-          <li><a href="#boxcox">Box Cox Transformation</a>
-          <li><a href="#quantile">Quantile Transformation</a>
+	          <li><a href="#boxcox">Box Cox Transformation</a>
+	          <li><a href="#quantile">Quantile Transformation</a>
     <li><a href="#Machine-Learning">Machine Learning</a>
           <ul>
           <li><a href="#corelation">Correlation Analysis</a>
           <li><a href="#random-forest">Random Forest</a>
           <li><a href="#xgboost">XGBoost</a>
-          <li><a href="#xgboost">Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)</a>
+          <li><a href="#performance">Assessing Performance (MAE, Prediction Variance, Cross-fold Validation)</a>
           </ul>
     <li><a href="#Analysis-Tableau">Interactive Reseach Analysis in Tableau</a>
     <li><a href="#conclusion">Conclusion</a>
