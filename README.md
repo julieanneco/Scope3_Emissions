@@ -155,8 +155,27 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
-[View the R Markdown file for this step](https://github.com/julieanneco/predictingHDI/blob/main/PredictHDI_Step2_EDA.Rmd)
+[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/3 - Skew Transformation.ipynb)
 
+**Analyzing Skew**
+
+*Data has a positive/right skew when*:
+   - Long tail extends to the right
+   - Most values cluster on the left
+   - Mean > Median
+
+*Interpretation*:
+   - When skewness is > 1, the data is highly skewed
+   - A Fisher kurtosis of 0 indicated perfect normal distribution. The farther from 0, the less normal-like tails.
+
+While all features should be transformed within the Machine Learning pipeline, this step shows the analysis of Market Cap transformation using both Box Cox and Quantile transformation for use in future analysis and research. 
+
+**Final Distribution Results Post-Transformation**
+Box Cox
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/transform_boxcox.png" alt="BoxCox.key" width="320">
+
+Quantile
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/transform_quantile.png" alt="BoxCox.key" width="320">
 
 <b>Correlation Matrix</b>
 
