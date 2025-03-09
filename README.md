@@ -378,7 +378,7 @@ Percentage of total accounts: 9.7%
 <!-- Skew-Transformation -->
 ## 3. Skew Transformation
 
-[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/3%20-%20Skew%20Transformation.ipynb)
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/3%20-%20Skew%20Transformation.ipynb)
 
 **Analyzing Skew**
 
