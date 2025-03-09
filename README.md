@@ -51,7 +51,9 @@ This project utilizes both Tableau and Python. The ipynb files are uploaded to t
 #### *Data Overview*
 
 The inital data set includes 181,326 rows with the following unique columns and statistics:
-account_id', 'account_name', 'incorporated_country', 'ticker', 'Evaluation_status', 'Scope_3_emissions_type', 'Scope_3_emissions_amount', 'Year', 'Market_Cap', 'Employee_Count', 'ebitda', 'Revenue', grossProfit', 'netIncome', 'reportedCurrency', 'cashAndCashEquivalents', 'shortTermInvestments', 'longTermInvestments', 'totalAssets', 'totalLiabilities', 'totalInvestments', 'totalDebt', totalEquity', Primary activity', Primary sector', 'Primary industry', 'Primary questionnaire sector', 'Third_party_verification', 'Revenue_USD', 'Market_Cap_USD', 'ebitda_USD', 'grossProfit_USD', 'netIncome_USD',    'cashAndCashEquivalents_USD', 'shortTermInvestments_USD', 'longTermInvestments_USD', 'totalAssets_USD', 'totalLiabilities_USD', 'totalInvestments_USD', 'totalDebt_USD', 'totalEquity_USD'
+
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/summary.png" alt="summarydata.key" width="850">
+
 
 #### *Data Challenges*
 
