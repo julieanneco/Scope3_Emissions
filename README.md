@@ -140,7 +140,7 @@ The Outlier Dashboard offered valuable insight to understand the nature of outli
 3. Custom IQR binning to reduce percentile volumes
 4. Validating changes in Standard Deviation, Skew, and Kurtosis
 
-Calculating baseline skewness and kurtosis before outlier removal
+*Calculating baseline skewness and kurtosis before outlier removal*
 ```python
 original_skew = outlier_df['Scope_3_emissions_amount'].skew()
 original_kurtosis = outlier_df['Scope_3_emissions_amount'].kurtosis()
@@ -152,10 +152,56 @@ print(original_kurtosis)
 Skew: 325.8187947316704
 Kurtosis: 116921.06539086264
 
-
+*Looking at observation volume by year*
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/YoY.png" alt="YoY.key" width="400">****
 
 #### Extreme Variation Analysis at a Company Level
-
+*Function to Find Accounts with Extreme Variation (inconsistent observations or extreme peaks/valleys from year to year*
+```python
+def find_extreme_variations(outlier_df, value_column, year_column='Year', 
+                          activity_column='Primary activity', 
+                          account_column='account_id',
+                          z_score_threshold=2):
+    # Calculate variation metrics for each account within a primary activity
+    variation_stats = (outlier_df.groupby([activity_column, account_column])
+                      .agg({
+                          value_column: ['std', 'mean', 'min', 'max', 'count'],
+                          year_column: list
+                      })
+                      .reset_index())
+    # Flatten column names
+    variation_stats.columns = [
+        f"{col[0]}_{col[1]}" if col[1] else col[0] 
+        for col in variation_stats.columns
+    ]
+    # Calculate coefficient of variation (CV)
+    variation_stats['cv'] = (variation_stats[f'{value_column}_std'] / 
+                           variation_stats[f'{value_column}_mean'].abs())
+    # Calculate range ratio
+    variation_stats['range_ratio'] = (variation_stats[f'{value_column}_max'].abs() / 
+                                    variation_stats[f'{value_column}_min'].abs())
+    # Calculate Z-scores of CV within each Primary Activity
+    variation_stats['cv_zscore'] = (variation_stats
+                                   .groupby(activity_column)['cv']
+                                   .transform(lambda x: stats.zscore(x)))
+    # Identify extreme accounts
+    extreme_accounts = variation_stats[
+        (variation_stats['cv_zscore'].abs() > z_score_threshold) &
+        (variation_stats[f'{value_column}_count'] > 1)  # At least 2 years of data
+    ].copy()
+    # Sort and format results
+    extreme_accounts = extreme_accounts.sort_values(
+        ['cv_zscore'], 
+        ascending=False
+    )
+    # Add year range information
+    extreme_accounts['year_range'] = extreme_accounts[f'{year_column}_list'].apply(
+        lambda x: f"{min(x)}-{max(x)}"
+    )
+    return extreme_accounts
+```
+Sample vizualizations verified these inconsistent accounts and were removed from the data.
+<img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance1.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance2.png" alt="YoY.key" width="200"> <img src="https://github.com/julieanneco/Scope3_Emissions/blob/Photos/extreme_variance3.png" alt="YoY.key" width="200">
 
 #### Z-Score Analysis at Primary Activity Level
 
