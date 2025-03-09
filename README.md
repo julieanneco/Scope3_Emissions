@@ -1,5 +1,5 @@
 * * *
-<div class='tableauPlaceholder' id='viz1741488402680' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
+<div class='tableauPlaceholder' id='viz1741490001253' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Scope3EmissionsinGlobalBusiness&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sc&#47;Scope3EmissionsinGlobalBusiness&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
 
 [Go to Dasboard](https://public.tableau.com/app/profile/julie.anne.hockensmith/viz/Scope3EmissionsinGlobalBusiness/Home)
 
@@ -31,16 +31,18 @@
 <!-- Project Overview -->
 ## Project Overview
 
-Project summary here
+As the global focus on sustainability intensifies, organizations are increasingly recognizing the importance of managing their environmental impact across all areas of operation. Among the various components of greenhouse gas emissions, Scope 3 emissions—those that occur in the value chain of an organization, both upstream and downstream—often represent the largest share of a business's carbon footprint. 
 
-The entire project is coded in R and consists of 4 key steps (each in separate R Markdown files):
+This data research project aims to provide a preliminary analysis of Scope 3 emissions within businesses, in order to answer specific research questions and build and improve upon various machine learning models to better predict and forecast future Scope 3 Emissions. 
+
+**The project consists of various steps and processes to achieve a final prelimiary framework for this research effort:**
 <ol>
-  <li><b>Data Engineering:</b> Scraping, merging, cleaning, and transforming data. </li>
-  <li><b>Exploratory Data Analysis:</b> Analyzing variables for correlation and regression to build final data frame(s). </li>
-  <li><b>Prediction with Machine Learning:</b> Using the final variables to build 2 random forest models (regression and classification).</li>
-  <li><b><i>Bonus:</b> Using true indicators to predict HDI.</i></li>
-	
+  <li><b>Data Engineering:</b> Scraping, merging, cleaning, and normalizing data. </li>
+  <li><b>Outlier Analysis (EDA):</b> Analyzing variables for correlation and regression to build final data frame(s). </li>
+  <li><b>Skew Transformation:</b> Utilizing transformation techniques to examine and handle extreme skew. </li>  
+  <li><b>Prediction with Machine Learning:</b> Analyzing variables for correlation and using analyzed features to build preliminary machine learning models.</li>
 </ol>
+This project utilizes both Tableau and Python. The ipynb files are uploaded to this repository and links to Tableau are provided where relevant. and the associated  project is coded in R and consists of 4 key steps (each in separate R Markdown files):
 
 <br />
 
