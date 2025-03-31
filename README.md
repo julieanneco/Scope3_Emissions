@@ -423,7 +423,7 @@ While all features should be transformed within the Machine Learning pipeline, t
 <!-- Machine-Learning -->
 # 4. Machine Learning Models
 
-[View the Python file for this step](https://github.com/julieanneco/predictingHDI/blob/main/4%20-%20Machine%20Learning.ipynb) <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
+[View the Python file for this step](https://github.com/julieanneco/Scope3_Emissions/blob/main/4%20-%20Machine%20Learning.ipynb) <sup><sub>*Ctrl+Click to open in new tab*</sub></sup>
 
 
 <!-- correlation -->
